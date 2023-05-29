@@ -1,17 +1,16 @@
 import { useAppDispatch } from "../../../app/hooks"
-import { authThunk } from "../../../features/auth/auth.slice"
+import { authThunk } from "../auth.slice"
 import s from "./Register.module.css"
 
 export const Register = () => {
-
-const dispatch = useAppDispatch()
-const payload = {
-  email: "oprokopieva382@gmail.com",
-  password: "1qazxcvBG",
-}
-const registerHandler = () => {
-  dispatch(authThunk.register(payload))
-}
+  const dispatch = useAppDispatch()
+  const arg = {
+    email: "prokopieva382@gmail.com",
+    password: "nthgtybt2",
+  }
+  const registerHandler = () => {
+    dispatch(authThunk.register(arg))
+  }
 
   return (
     <div className={s.container}>
