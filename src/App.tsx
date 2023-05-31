@@ -1,10 +1,9 @@
-import { Counter } from "./features/counter/Counter"
 import "./App.css"
 import { useAppDispatch, useAppSelector } from "./app/hooks"
 import { useEffect } from "react"
 import { appActions } from "./app/app.slice"
-import { SuperButton } from "./comon/components/SuperButton"
 import { Header } from "./comon/components/Header"
+
 
 function App() {
   const isLoadind = useAppSelector((state) => state.app.isLoading)
@@ -22,7 +21,7 @@ function App() {
       {isLoadind && <h1>Loader...</h1>}
       {/* <Counter /> */}
       <Header/>
-    </div>
+      </div>
   )
 }
 

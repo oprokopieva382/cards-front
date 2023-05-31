@@ -21,7 +21,7 @@ export const SuperButton: FC<SuperButtonPropsType> = ({
     borderRadius: `${borderRadius}`,
   }
   return (
-    <Button variant="contained" color={color} sx={buttonStyle}>
+    <Button variant="contained" color={color} sx={buttonStyle} >
       {text}
     </Button>
   )
