@@ -1,13 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 import { authAPI, ArgRegisterType, ArgLoginType, ProfileType } from "./auth.api"
 import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
 
-const register = createAsyncThunk(
+const register = createAppAsyncThunk<void, ArgRegisterType>(
   "auth/register",
-  (arg: ArgRegisterType, thunkAPI) => {
-    authAPI.register(arg).then((res) => {
-      //console.log(res.data)
-    })
+  async (arg, thunkAPI) => {
+    await authAPI.register(arg)
   },
 )
 
