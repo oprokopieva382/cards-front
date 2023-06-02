@@ -4,9 +4,15 @@ import IconButton from "@mui/material/IconButton"
 import Input from "@mui/material/Input"
 import InputAdornment from "@mui/material/InputAdornment"
 import InputLabel from "@mui/material/InputLabel"
-import { useState } from "react"
-
-export const Password = () => {
+import TextField from "@mui/material/TextField"
+import { FC, useState } from "react"
+import { UseFormRegister } from "react-hook-form"
+export type PasswordPropsType = {
+  label: string
+  register: UseFormRegister<any>
+  name: "password" | "loginPassword"
+}
+export const Password: FC<PasswordPropsType> = ({ label, register, name }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
@@ -18,12 +24,14 @@ export const Password = () => {
   }
   return (
     <FormControl
-      sx={{marginTop: 2, width: "347px" }}
+      sx={{ marginTop: 2, width: "347px" }}
       variant="standard"
       required
-      >
+    >
       <InputLabel htmlFor="standard-adornment-password">password</InputLabel>
       <Input
+        {...register(name)}
+        //label={label}
         id="standard-adornment-password"
         type={showPassword ? "text" : "password"}
         required

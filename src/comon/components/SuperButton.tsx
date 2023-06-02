@@ -7,6 +7,7 @@ type SuperButtonPropsType = {
   color?: "primary" | "secondary"
   text: string
   startIcon?: any
+ 
 }
 
 export const SuperButton: FC<SuperButtonPropsType> = ({
@@ -15,13 +16,19 @@ export const SuperButton: FC<SuperButtonPropsType> = ({
   color,
   text,
   startIcon,
+ 
 }) => {
   const buttonStyle = {
     width: `${width}`,
     borderRadius: `${borderRadius}`,
   }
   return (
-    <Button variant="contained" color={color} sx={buttonStyle} >
+    <Button
+      variant="contained"
+      color={color}
+      sx={buttonStyle}
+  
+    >
       {text}
     </Button>
   )

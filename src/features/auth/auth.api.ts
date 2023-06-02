@@ -14,6 +14,9 @@ export const authAPI = {
   login: (arg: ArgLoginType) => {
     return instance.post<LoginResponseType>("auth/login", arg)
   },
+  logOut: () => {
+    return instance.delete("auth/me")
+  },
 }
 
 export type ProfileType = Omit<LoginResponseType, "token" | "tokenDeathTime">
