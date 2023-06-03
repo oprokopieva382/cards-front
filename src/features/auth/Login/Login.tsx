@@ -78,7 +78,7 @@ const dispatch = useAppDispatch()
                 textAlign={"right"}
                 style={{ marginRight: 30, marginBottom: 64 }}
               >
-                <Link href="#" underline="none" color={"black"}>
+                <Link href={paths.FORGOT_PASSWORD} underline="none" color={"black"}>
                   {"Forgot password?"}
                 </Link>
               </Typography>

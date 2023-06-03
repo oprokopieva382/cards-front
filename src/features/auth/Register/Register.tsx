@@ -16,11 +16,7 @@ import { paths } from "../../../comon/routes/paths"
 
 export const Register = () => {
   const dispatch = useAppDispatch()
-  const arg = {
-    email: "prokopieva382@gmail.com",
-    password: "nthgtybt2",
-  }
-
+ 
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,10 +29,7 @@ export const Register = () => {
       console.log(arg)
     },
   })
-  // const registerHandler = () => {
-  //   dispatch(authThunk.register(arg))
-  // }
-const paperStyle = {
+  const paperStyle = {
   padding: 20,
   width: 413,
   margin: "20px auto",
@@ -44,10 +37,7 @@ const paperStyle = {
 }
   return (
     <div>
-   
-      {/* <button onClick={registerHandler}>register</button> */}
-
-      <Header />
+     <Header />
       <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
