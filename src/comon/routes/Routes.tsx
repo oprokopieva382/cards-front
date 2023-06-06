@@ -6,6 +6,8 @@ import { Login } from "../../features/auth/Login/Login"
 import { ForgotPassword } from "../../features/auth/PasswordAndEmail/ForgotPassword"
 import { CheckEmail } from "../../features/auth/PasswordAndEmail/CheckEmail"
 import { SetNewPassword } from "../../features/auth/PasswordAndEmail/SetNewPassword"
+import { Profile } from "../../features/auth/Profile/Profile"
+
 
 export const router = createBrowserRouter([
   {
@@ -31,5 +33,9 @@ export const router = createBrowserRouter([
   {
     path: paths.SET_NEW_PASSWORD,
     element: <SetNewPassword />,
+  },
+  {
+    path: paths.PROFILE,
+    element: <Profile />,
   },
 ])

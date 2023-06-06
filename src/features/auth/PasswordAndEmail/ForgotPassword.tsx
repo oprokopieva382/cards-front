@@ -54,7 +54,7 @@ export const ForgotPassword = () => {
                 type={"submit"}
                 variant={"contained"}
                 color={"primary"}
-                href={paths.CHECK_EMAIL}
+                // href={paths.CHECK_EMAIL}
               >
                 Send instructions
               </Button>

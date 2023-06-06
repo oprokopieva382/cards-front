@@ -48,7 +48,7 @@ export type LoginResponseType = {
  export type ForgotPasswordType = {
    email: string
    from?: string
-   message: string
+   message?: string
  }
   export type ArgRegisterType = Omit<ArgLoginType, "rememberMe">
 

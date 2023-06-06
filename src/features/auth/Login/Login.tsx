@@ -25,7 +25,7 @@ const dispatch = useAppDispatch()
     },
     onSubmit: (arg) => {
       dispatch(authThunk.login(arg))
-      console.log(arg)
+      //console.log(arg)
     },
   })
 

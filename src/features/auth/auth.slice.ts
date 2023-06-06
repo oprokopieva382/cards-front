@@ -67,6 +67,7 @@ const slice = createSlice({
         state.profile = action.payload.profile
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
+        debugger
         state.emailMessage = action.payload.emailMessage
         state.path = action.payload.path
       })
