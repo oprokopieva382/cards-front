@@ -14,11 +14,15 @@ import { EditableProfileTitle } from "../../../comon/components/EditableProfileT
 import { authThunk } from "../auth.slice"
 import { useNavigate } from "react-router-dom"
 import { paths } from "../../../comon/routes/paths"
+import { useEffect } from "react"
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
+  useEffect(() => {
+     dispatch(authThunk.me())
+  }, [])
   //   const formik = useFormik({
   //     initialValues: {},
   //     onSubmit: (arg) => {

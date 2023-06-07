@@ -4,7 +4,6 @@ import { useEffect } from "react"
 import { appActions } from "./app/app.slice"
 import { Header } from "./comon/components/Header"
 
-
 function App() {
   const isLoadind = useAppSelector((state) => state.app.isLoading)
 
@@ -16,12 +15,12 @@ function App() {
     }, 3000)
   }, [])
 
-  return (
+   return (
     <div className="App">
       {isLoadind && <h1>Loader...</h1>}
       {/* <Counter /> */}
-      <Header/>
-      </div>
+      <Header />
+    </div>
   )
 }
 

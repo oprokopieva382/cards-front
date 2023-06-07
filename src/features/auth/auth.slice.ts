@@ -5,10 +5,10 @@ import {
   ArgLoginType,
   ProfileType,
   ForgotPasswordType,
-  UpdateProfileResponseType,
   UpdateProfileType,
 } from "./auth.api"
 import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
+import { setAppInitializedAction } from "../../comon/utils/setAppInitializedAction"
 
 const register = createAppAsyncThunk<
   { path: PathDirectionType },
@@ -29,11 +29,19 @@ const logOut = createAppAsyncThunk<InformType>("auth/logOut", async () => {
   const res = await authAPI.logOut()
   return { info: res.data.info }
 })
+
 const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
-  async () => {
-    const res = await authAPI.me()
-    return { profile: res.data }
+  async (data, { rejectWithValue, dispatch }) => {
+    //debugger
+    try {
+      const res = await authAPI.me()
+      return { profile: res.data }
+    } catch (e) {
+      return rejectWithValue(e)
+    } finally {
+      dispatch(setAppInitializedAction())
+    }
   },
 )
 
@@ -52,14 +60,13 @@ const forgotPassword = createAppAsyncThunk<
   }
 })
 
-const updateProfile = createAppAsyncThunk<{ profile: ProfileType }, UpdateProfileType>(
-  "auth/updateProfile",
-  async (arg) => {
-    debugger
-    const res = await authAPI.updateProfile(arg)
-    return { profile: res.data.updatedUser }
-  },
-)
+const updateProfile = createAppAsyncThunk<
+  { profile: ProfileType },
+  UpdateProfileType
+>("auth/updateProfile", async (arg) => {
+  const res = await authAPI.updateProfile(arg)
+  return { profile: res.data.updatedUser }
+})
 
 const slice = createSlice({
   name: "auth",
@@ -88,8 +95,8 @@ const slice = createSlice({
         state.path = action.payload.path
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
-          state.profile = action.payload.profile
-       })
+        state.profile = action.payload.profile
+      })
   },
 })
 

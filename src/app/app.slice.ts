@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { setAppInitializedAction } from "../comon/utils/setAppInitializedAction";
 
 const initialState = {
   error: null as string | null,
@@ -14,6 +15,11 @@ const slice = createSlice({
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading
     },
+     },
+  extraReducers: builder => {
+    builder.addCase(setAppInitializedAction, state=> {
+      state.isAppInitialized = true
+    })
   },
 })
 
