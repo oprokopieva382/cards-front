@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { authAPI, ArgRegisterType, ArgLoginType, ProfileType, ForgotPasswordType } from "./auth.api"
+import {
+  authAPI,
+  ArgRegisterType,
+  ArgLoginType,
+  ProfileType,
+  ForgotPasswordType,
+  UpdateProfileResponseType,
+  UpdateProfileType,
+} from "./auth.api"
 import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
 
 const register = createAppAsyncThunk<
@@ -26,23 +34,32 @@ const me = createAppAsyncThunk<{ profile: ProfileType }>(
   async () => {
     const res = await authAPI.me()
     return { profile: res.data }
-  })
+  },
+)
 
-  const forgotPassword = createAppAsyncThunk<
-    {
-      path: PathDirectionType
-      emailMessage: string
-    } & InformType,
-    ForgotPasswordType
-  >("auth/forgot", async (arg) => {
-    const res = await authAPI.forgotPassword(arg)
-    return {
-      path: "/auth/check-email",
-      emailMessage: arg.email,
-      info: res.data.info
-    }
-  })
+const forgotPassword = createAppAsyncThunk<
+  {
+    path: PathDirectionType
+    emailMessage: string
+  } & InformType,
+  ForgotPasswordType
+>("auth/forgot", async (arg) => {
+  const res = await authAPI.forgotPassword(arg)
+  return {
+    path: "/auth/check-email",
+    emailMessage: arg.email,
+    info: res.data.info,
+  }
+})
 
+const updateProfile = createAppAsyncThunk<{ profile: ProfileType }, UpdateProfileType>(
+  "auth/updateProfile",
+  async (arg) => {
+    debugger
+    const res = await authAPI.updateProfile(arg)
+    return { profile: res.data.updatedUser }
+  },
+)
 
 const slice = createSlice({
   name: "auth",
@@ -67,15 +84,24 @@ const slice = createSlice({
         state.profile = action.payload.profile
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
-        debugger
         state.emailMessage = action.payload.emailMessage
         state.path = action.payload.path
       })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+          state.profile = action.payload.profile
+       })
   },
 })
 
 export const authReducer = slice.reducer
-export const authThunk = { register, login, logOut, me, forgotPassword }
+export const authThunk = {
+  register,
+  login,
+  logOut,
+  me,
+  forgotPassword,
+  updateProfile,
+}
 
 export type InformType = {
   info: string

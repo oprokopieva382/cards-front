@@ -1,33 +1,36 @@
 import { useFormik } from "formik"
-import { useAppDispatch, useAppSelector } from "../../../app/hooks"
+import { useAppDispatch } from "../../../app/hooks"
 import { Header } from "../../../comon/components/Header"
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
 import Button from "@mui/material/Button"
 import profileImage from "../../../assets/img/pic.jpg"
 import Avatar from "@mui/material/Avatar"
-import TextField from "@mui/material/TextField"
-import InputAdornment from "@mui/material/InputAdornment"
 import IconButton from "@mui/material/IconButton"
-import { BorderColor, Edit, Logout } from "@mui/icons-material"
-import Typography from "@mui/material/Typography"
+import { Logout } from "@mui/icons-material"
 import Badge from "@mui/material/Badge"
-import { SuperButton } from "../../../comon/components/SuperButton"
 import Box from "@mui/material/Box"
 import { EditableProfileTitle } from "../../../comon/components/EditableProfileTitle"
-import Link from "@mui/material/Link"
-import { colors } from "@mui/material"
+import { authThunk } from "../auth.slice"
+import { useNavigate } from "react-router-dom"
+import { paths } from "../../../comon/routes/paths"
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-  const formik = useFormik({
-    initialValues: {},
-    onSubmit: (arg) => {
-      //dispatch(authThunk.login(arg))
-      console.log(arg)
-    },
-  })
+  //   const formik = useFormik({
+  //     initialValues: {},
+  //     onSubmit: (arg) => {
+  //       //dispatch(authThunk.login(arg))
+  //       console.log(arg)
+  //     },
+  //   })
+
+  const logOutHandler = () => {
+    dispatch(authThunk.logOut())
+    navigate(paths.LOGIN)
+  }
   const paperStyle = {
     padding: 20,
     width: 413,
@@ -82,6 +85,7 @@ export const Profile = () => {
               }}
               variant="outlined"
               startIcon={<Logout />}
+              onClick={logOutHandler}
             >
               Log out
             </Button>

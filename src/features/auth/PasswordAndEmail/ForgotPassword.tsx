@@ -9,16 +9,25 @@ import { paths } from "../../../comon/routes/paths"
 import { useFormik } from "formik"
 import { useAppDispatch } from "../../../app/hooks"
 import { authThunk } from "../auth.slice"
+import { emailMessage } from "../constants"
+import { ForgotPasswordType } from "../auth.api"
+import { useNavigate } from "react-router-dom"
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",
-      message: ""
+      message: "",
     },
     onSubmit: (arg) => {
-      dispatch(authThunk.forgotPassword(arg))
+      const payload: ForgotPasswordType = {
+        email: arg.email,
+        message: emailMessage,
+      }
+      dispatch(authThunk.forgotPassword(payload))
+      navigate(paths.CHECK_EMAIL)
       console.log(arg)
     },
   })
@@ -54,7 +63,6 @@ export const ForgotPassword = () => {
                 type={"submit"}
                 variant={"contained"}
                 color={"primary"}
-                // href={paths.CHECK_EMAIL}
               >
                 Send instructions
               </Button>

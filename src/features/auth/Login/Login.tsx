@@ -12,11 +12,11 @@ import Button from "@mui/material/Button"
 import { authThunk } from "../auth.slice"
 import { useAppDispatch } from "../../../app/hooks"
 import { paths } from "../../../comon/routes/paths"
-
+import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
-  
-const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -25,6 +25,7 @@ const dispatch = useAppDispatch()
     },
     onSubmit: (arg) => {
       dispatch(authThunk.login(arg))
+      navigate(paths.PROFILE)
       //console.log(arg)
     },
   })
@@ -78,7 +79,11 @@ const dispatch = useAppDispatch()
                 textAlign={"right"}
                 style={{ marginRight: 30, marginBottom: 64 }}
               >
-                <Link href={paths.FORGOT_PASSWORD} underline="none" color={"black"}>
+                <Link
+                  href={paths.FORGOT_PASSWORD}
+                  underline="none"
+                  color={"black"}
+                >
                   {"Forgot password?"}
                 </Link>
               </Typography>
@@ -93,7 +98,7 @@ const dispatch = useAppDispatch()
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Don't have an account?
                 <Grid marginTop={"11px"}>
-                  <Link href={paths.REGISTER}  color={"#366EFF"}>
+                  <Link href={paths.REGISTER} color={"#366EFF"}>
                     {"Sign Up"}
                   </Link>
                 </Grid>
@@ -104,4 +109,4 @@ const dispatch = useAppDispatch()
       </Grid>
     </Grid>
   )
- }
+}

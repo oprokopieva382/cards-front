@@ -20,8 +20,11 @@ export const authAPI = {
     return axios.post<InformType>(
       "https://neko-back.herokuapp.com/2.0/auth/forgot",
       arg,
-      {withCredentials: true}
+      { withCredentials: true },
     )
+  },
+  updateProfile: (arg: UpdateProfileType) => {
+    return instance.put<UpdateProfileResponseType>("auth/me", arg)
   },
 }
 
@@ -48,7 +51,7 @@ export type LoginResponseType = {
  export type ForgotPasswordType = {
    email: string
    from?: string
-   message?: string
+   message: string
  }
   export type ArgRegisterType = Omit<ArgLoginType, "rememberMe">
 
@@ -56,4 +59,13 @@ export type LoginResponseType = {
    email: string
    password: string
    rememberMe: boolean
+ }
+
+ export type UpdateProfileType ={
+  name?: string
+  avatar?: string
+ }
+
+ export type UpdateProfileResponseType = {
+   updatedUser: ProfileType
  }
