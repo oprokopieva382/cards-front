@@ -13,13 +13,16 @@ import { authThunk } from "../auth.slice"
 import { useAppDispatch } from "../../../app/hooks"
 import { paths } from "../../../comon/routes/paths"
 import { useNavigate } from "react-router-dom"
-
+import { useEffect } from "react"
 
 export const Login = () => {
-     
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  
+
+  useEffect(() => {
+    dispatch(authThunk.me())
+  }, [])
+
   const formik = useFormik({
     initialValues: {
       email: "",

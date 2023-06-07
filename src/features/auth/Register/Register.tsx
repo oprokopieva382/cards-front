@@ -10,13 +10,15 @@ import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
 import { useFormik } from "formik"
 import { paths } from "../../../comon/routes/paths"
-
-
+import { useEffect } from "react"
 
 
 export const Register = () => {
   const dispatch = useAppDispatch()
- 
+ useEffect(() => {
+   dispatch(authThunk.me())
+ }, [])
+
   const formik = useFormik({
     initialValues: {
       email: "",
