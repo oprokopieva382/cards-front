@@ -5,11 +5,18 @@ import Envelope from "../../../assets/img/envelope.svg"
 import { Button } from "@mui/material"
 import { paths } from "../../../comon/routes/paths"
 import { emailMessage} from "../auth.selector"
-import { useAppSelector } from "../../../app/hooks"
-
+import { useAppDispatch, useAppSelector } from "../../../app/hooks"
+import { useEffect } from "react"
+import { authThunk } from "../auth.slice"
 
 export const CheckEmail = () => {
-  const email = useAppSelector(emailMessage)
+const dispatch = useAppDispatch()
+const email = useAppSelector(emailMessage)
+
+  useEffect(() => {
+    dispatch(authThunk.me())
+  }, [])
+
   const paperStyle = {
     padding: 20,
     width: 413,
