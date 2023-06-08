@@ -5,10 +5,11 @@ import TextField from "@mui/material/TextField/TextField"
 import Button from "@mui/material/Button"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { useFormik } from "formik"
+import { emailMessage } from "../auth.selector"
 
 export const SetNewPassword = () => {
    const dispatch = useAppDispatch()
-   const emailMessage = useAppSelector((state) => state.auth.emailMessage)
+  const email = useAppSelector(emailMessage)
    const formik = useFormik({
      initialValues: {
        password: "",
@@ -43,8 +44,8 @@ export const SetNewPassword = () => {
             </Grid>
             <Grid textAlign="start" marginTop={"69px"} margin={" 18px 33px"}>
               <p>
-                Create new password and we will send you further instructions
-                to {emailMessage}
+                {` Create new password and we will send you further instructions
+                to ${email}`}
               </p>
               <Button
                 style={{ width: "347px", borderRadius: "30px", marginTop: 50 }}

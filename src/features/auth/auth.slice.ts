@@ -6,6 +6,7 @@ import {
   ProfileType,
   ForgotPasswordType,
   UpdateProfileType,
+  SetNewPasswordType,
 } from "./auth.api"
 import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
 import { setAppInitializedAction } from "../../comon/utils/setAppInitializedAction"
@@ -33,7 +34,6 @@ const logOut = createAppAsyncThunk<InformType>("auth/logOut", async () => {
 const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
   async (data, { rejectWithValue, dispatch }) => {
-    //debugger
     try {
       const res = await authAPI.me()
       return { profile: res.data }
@@ -44,6 +44,17 @@ const me = createAppAsyncThunk<{ profile: ProfileType }>(
     }
   },
 )
+// const setNewPassword = createAppAsyncThunk<
+//   { info: string; path: PathDirectionType } & InfoMessageType,
+//   SetNewPasswordType
+// >("auth/setNewPassword", async (arg) => {
+//   const res = await authAPI.setNewPassword(arg)
+//   return {
+//     path: "/auth/login",
+//     info: res.data.info,
+//     error: res.data.error,
+//   }
+// })
 
 const forgotPassword = createAppAsyncThunk<
   {
@@ -97,6 +108,9 @@ const slice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.profile = action.payload.profile
       })
+      // .addCase(setNewPassword.fulfilled, (state, action) => {
+      //   state.path = action.payload.path
+      // })
   },
 })
 
@@ -108,6 +122,7 @@ export const authThunk = {
   me,
   forgotPassword,
   updateProfile,
+  // setNewPassword,
 }
 
 export type InformType = {
@@ -116,3 +131,4 @@ export type InformType = {
 }
 
 type PathDirectionType = "auth/login" | "/auth/check-email" | "/"
+type InfoMessageType = { info: string }
