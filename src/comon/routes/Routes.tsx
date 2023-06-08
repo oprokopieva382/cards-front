@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createHashRouter } from "react-router-dom"
 import App from "../../App"
 import { paths } from "./paths"
 import { Register } from "../../features/auth/Register/Register"
@@ -9,7 +9,7 @@ import { SetNewPassword } from "../../features/auth/PasswordAndEmail/SetNewPassw
 import { Profile } from "../../features/auth/Profile/Profile"
 
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: paths.MAIN,
     element: <App />,

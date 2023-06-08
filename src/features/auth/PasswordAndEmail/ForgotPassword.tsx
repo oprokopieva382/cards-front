@@ -12,10 +12,17 @@ import { authThunk } from "../auth.slice"
 import { emailMessage } from "../constants"
 import { ForgotPasswordType } from "../auth.api"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export const ForgotPassword = () => {
+  
+useEffect(() => {
+  dispatch(authThunk.me())
+}, [])
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,8 +35,7 @@ export const ForgotPassword = () => {
       }
       dispatch(authThunk.forgotPassword(payload))
       navigate(paths.CHECK_EMAIL)
-      console.log(arg)
-    },
+        },
   })
   const paperStyle = {
     padding: 20,
