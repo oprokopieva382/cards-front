@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://oprokopieva382.github.io/cards-front",
+  base: "/cards-front/",
   plugins: [react()],
   server: {
     open: true,
