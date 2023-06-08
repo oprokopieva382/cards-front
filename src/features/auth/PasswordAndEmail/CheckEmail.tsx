@@ -1,17 +1,17 @@
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
 import { Header } from "../../../comon/components/Header"
-import Envelope from "../../../assets/img/envelope.svg"
+import pic from "../../../assets/img/pic.jpg"
 import { Button } from "@mui/material"
 import { paths } from "../../../comon/routes/paths"
-import { emailMessage} from "../auth.selector"
+import { emailMessage } from "../auth.selector"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { useEffect } from "react"
 import { authThunk } from "../auth.slice"
 
 export const CheckEmail = () => {
-const dispatch = useAppDispatch()
-const email = useAppSelector(emailMessage)
+  const dispatch = useAppDispatch()
+  const email = useAppSelector(emailMessage)
 
   useEffect(() => {
     dispatch(authThunk.me())
@@ -33,7 +33,7 @@ const email = useAppSelector(emailMessage)
           <h2 style={{ marginBottom: "29px" }}>CheckEmail</h2>
 
           <img
-            src={Envelope}
+            src={pic}
             alt="Envelope"
             style={{ width: "108px", color: "#96afd9", marginBottom: "31px" }}
           />
