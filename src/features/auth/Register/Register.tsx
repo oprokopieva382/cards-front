@@ -5,12 +5,12 @@ import { authThunk } from "../auth.slice"
 import s from "./Register.module.css"
 import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
-import Link from "@mui/material/Link"
 import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
 import { useFormik } from "formik"
 import { paths } from "../../../comon/routes/paths"
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 
 
 export const Register = () => {
@@ -84,7 +84,7 @@ export const Register = () => {
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Already have an account?
                 <Grid marginTop={"11px"}>
-                  <Link href={paths.LOGIN}  color={"#366EFF"}>
+                  <Link to={paths.LOGIN}  color={"#366EFF"}>
                     {"Sign In"}
                   </Link>
                 </Grid>

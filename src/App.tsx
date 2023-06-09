@@ -6,9 +6,10 @@ import { Header } from "./comon/components/Header"
 import { authThunk } from "./features/auth/auth.slice"
 
 function App() {
-useEffect(() => {
-  dispatch(authThunk.me())
-}, [])
+  useEffect(() => {
+    console.log("app")
+    dispatch(authThunk.me())
+  }, [])
 
   const isLoadind = useAppSelector((state) => state.app.isLoading)
   const dispatch = useAppDispatch()
@@ -19,7 +20,7 @@ useEffect(() => {
     }, 3000)
   }, [])
 
-   return (
+  return (
     <div className="App">
       {isLoadind && <h1>Loader...</h1>}
       {/* <Counter /> */}

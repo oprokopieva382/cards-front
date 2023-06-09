@@ -5,25 +5,20 @@ import { Header } from "../../../comon/components/Header"
 import Checkbox from "@mui/material/Checkbox"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Typography from "@mui/material/Typography"
-import Link from "@mui/material/Link"
 import { useFormik } from "formik"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { authThunk } from "../auth.slice"
 import { useAppDispatch } from "../../../app/hooks"
 import { paths } from "../../../comon/routes/paths"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 export const Login = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(authThunk.me())
-  }, [])
-
-  const formik = useFormik({
+   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
@@ -85,11 +80,7 @@ export const Login = () => {
                 textAlign={"right"}
                 style={{ marginRight: 30, marginBottom: 64 }}
               >
-                <Link
-                  href={paths.FORGOT_PASSWORD}
-                  underline="none"
-                  color={"black"}
-                >
+                <Link to={paths.FORGOT_PASSWORD} color={"black"}>
                   {"Forgot password?"}
                 </Link>
               </Typography>
@@ -104,7 +95,7 @@ export const Login = () => {
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Don't have an account?
                 <Grid marginTop={"11px"}>
-                  <Link href={paths.REGISTER} color={"#366EFF"}>
+                  <Link to={paths.REGISTER} color={"#366EFF"}>
                     {"Sign Up"}
                   </Link>
                 </Grid>

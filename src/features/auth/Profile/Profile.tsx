@@ -21,6 +21,7 @@ export const Profile = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log("profile")
     dispatch(authThunk.me())
   }, [])
   //   const formik = useFormik({

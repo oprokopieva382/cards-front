@@ -1,6 +1,7 @@
 import axios from "axios"
 import { instance } from "../../comon/api/common.api"
 import { InformType } from "./auth.slice"
+import { ArrowRight } from "@mui/icons-material"
 
 export const authAPI = {
   register: (arg: ArgRegisterType) => {

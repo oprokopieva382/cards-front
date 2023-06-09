@@ -3,7 +3,6 @@ import { Header } from "../../../comon/components/Header"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
-import Link from "@mui/material/Link"
 import Button from "@mui/material/Button"
 import { paths } from "../../../comon/routes/paths"
 import { useFormik } from "formik"
@@ -11,7 +10,7 @@ import { useAppDispatch } from "../../../app/hooks"
 import { authThunk } from "../auth.slice"
 import { emailMessage } from "../constants"
 import { ForgotPasswordType } from "../auth.api"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 export const ForgotPassword = () => {
@@ -75,7 +74,7 @@ useEffect(() => {
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Did you remember your password?
                 <Grid marginTop={"11px"}>
-                  <Link href={paths.LOGIN} color={"#366EFF"}>
+                  <Link to={paths.LOGIN} color={"#366EFF"}>
                     {"Try logging in"}
                   </Link>
                 </Grid>

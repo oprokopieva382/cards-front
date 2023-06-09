@@ -21,11 +21,18 @@ const register = createAppAsyncThunk<
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>(
   "auth/login",
-  async (arg: ArgLoginType) => {
-    const res = await authAPI.login(arg)
-    return { profile: res.data }
+
+  async (arg: ArgLoginType, ThunkAPI) => {
+    const { rejectWithValue, dispatch } = ThunkAPI
+    try {
+      const res = await authAPI.login(arg)
+      return { profile: res.data }
+    } catch (e) {
+      return rejectWithValue(e)
+    }
   },
 )
+
 const logOut = createAppAsyncThunk<InformType>("auth/logOut", async () => {
   const res = await authAPI.logOut()
   return { info: res.data.info }
@@ -34,14 +41,16 @@ const logOut = createAppAsyncThunk<InformType>("auth/logOut", async () => {
 const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
   async (data, { rejectWithValue, dispatch }) => {
+    console.log("me")
     try {
       const res = await authAPI.me()
       return { profile: res.data }
     } catch (e) {
       return rejectWithValue(e)
-    } finally {
-      dispatch(setAppInitializedAction())
     }
+    // finally {
+    //   dispatch(setAppInitializedAction())
+    // }
   },
 )
 const setNewPassword = createAppAsyncThunk<

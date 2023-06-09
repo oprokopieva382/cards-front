@@ -10,7 +10,6 @@ type SuperButtonPropsType = {
   text: string
   startIcon?: any
 }
-const navigate = useNavigate()
 
 export const SuperButton: FC<SuperButtonPropsType> = ({
   width,
@@ -19,16 +18,23 @@ export const SuperButton: FC<SuperButtonPropsType> = ({
   text,
   startIcon,
 }) => {
+  const navigate = useNavigate()
+
+  const onClickHandler = () => {
+    navigate(paths.LOGIN)
+  }
+
   const buttonStyle = {
     width: `${width}`,
     borderRadius: `${borderRadius}`,
   }
+
   return (
     <Button
       variant="contained"
       color={color}
       sx={buttonStyle}
-      onClick={() => navigate(paths.LOGIN)}
+      onClick={onClickHandler}
     >
       {text}
     </Button>
