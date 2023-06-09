@@ -7,7 +7,11 @@ export const authAPI = {
     return instance.post<RegisterResponseType>("auth/register", arg)
   },
   login: (arg: ArgLoginType) => {
-    return instance.post<LoginResponseType>("auth/login", arg)
+    return axios.post<LoginResponseType>(
+      "https://neko-back.herokuapp.com/2.0/auth/login",
+      arg,
+      { withCredentials: true },
+    )
   },
   logOut: () => {
     return instance.delete<InformType>("auth/me")
@@ -25,10 +29,10 @@ export const authAPI = {
   updateProfile: (arg: UpdateProfileType) => {
     return instance.put<UpdateProfileResponseType>("auth/me", arg)
   },
-  setNewPassword: (arg: SetNewPasswordType) => {
+  setNewPassword: (data: SetNewPasswordType) => {
     return axios.post<InformType>(
       "https://neko-back.herokuapp.com/2.0/auth/set-new-password",
-      arg,
+      data,
       { withCredentials: true },
     )
   },

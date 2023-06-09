@@ -31,7 +31,8 @@ export const Login = () => {
     },
     onSubmit: (arg) => {
       dispatch(authThunk.login(arg))
-      navigate(paths.PROFILE)
+        .unwrap()
+        .then(() => navigate(paths.PROFILE))
     },
   })
 

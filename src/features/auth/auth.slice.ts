@@ -44,17 +44,16 @@ const me = createAppAsyncThunk<{ profile: ProfileType }>(
     }
   },
 )
-// const setNewPassword = createAppAsyncThunk<
-//   { info: string; path: PathDirectionType } & InfoMessageType,
-//   SetNewPasswordType
-// >("auth/setNewPassword", async (arg) => {
-//   const res = await authAPI.setNewPassword(arg)
-//   return {
-//     path: "/auth/login",
-//     info: res.data.info,
-//     error: res.data.error,
-//   }
-// })
+const setNewPassword = createAppAsyncThunk<
+  { path: PathDirectionType; info: string },
+  SetNewPasswordType
+>("auth/setNewPassword", async (data) => {
+  const res = await authAPI.setNewPassword(data)
+  return {
+    path: "auth/login",
+    info: res.data.info,
+  }
+})
 
 const forgotPassword = createAppAsyncThunk<
   {
@@ -108,9 +107,9 @@ const slice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.profile = action.payload.profile
       })
-      // .addCase(setNewPassword.fulfilled, (state, action) => {
-      //   state.path = action.payload.path
-      // })
+      .addCase(setNewPassword.fulfilled, (state, action) => {
+        state.path = action.payload.path
+      })
   },
 })
 
@@ -122,7 +121,7 @@ export const authThunk = {
   me,
   forgotPassword,
   updateProfile,
-  // setNewPassword,
+  setNewPassword,
 }
 
 export type InformType = {

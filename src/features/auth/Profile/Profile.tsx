@@ -14,13 +14,14 @@ import { authThunk } from "../auth.slice"
 import { useNavigate } from "react-router-dom"
 import { paths } from "../../../comon/routes/paths"
 import { useEffect } from "react"
+import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined"
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
-     dispatch(authThunk.me())
+    dispatch(authThunk.me())
   }, [])
   //   const formik = useFormik({
   //     initialValues: {},
@@ -55,13 +56,18 @@ export const Profile = () => {
               badgeContent={
                 <IconButton
                   component={"label"}
+                  disableRipple={true}
                   sx={{
                     width: "30px",
                     height: "30px",
                     border: "1px solid #fff",
                     bgcolor: "#808080",
-                  }}
-                />
+                  }}>
+                  <LocalSeeOutlinedIcon
+                    sx={{ fontSize: "16px", color: "#FFF" }}
+                  />
+                  <input type={"file"} hidden accept="image/*" />
+                </IconButton>
               }
             >
               <Avatar

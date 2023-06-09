@@ -6,25 +6,40 @@ import Button from "@mui/material/Button"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { useFormik } from "formik"
 import { emailMessage } from "../auth.selector"
+import { useNavigate, useParams } from "react-router-dom"
+import { authThunk } from "../auth.slice"
+import { paths } from "../../../comon/routes/paths"
 
 export const SetNewPassword = () => {
-   const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const email = useAppSelector(emailMessage)
-   const formik = useFormik({
-     initialValues: {
-       password: "",
-     },
-     onSubmit: (arg) => {
-       //dispatch(authThunk.login(arg))
-       console.log(arg)
-     },
-   })
-   const paperStyle = {
-     padding: 20,
-     width: 413,
-     margin: "20px auto",
-     height: 372,
-   }
+  const navigate = useNavigate()
+
+  const { token } = useParams()
+  const tokenForResetPassword = token ? token : ""
+
+  const formik = useFormik({
+    initialValues: {
+      password: "",
+    },
+    onSubmit: (arg) => {
+      dispatch(
+        authThunk.setNewPassword({
+          password: arg.password,
+          resetPasswordToken: tokenForResetPassword,
+        }),
+      )
+        .unwrap()
+        .then(() => navigate(paths.LOGIN))
+    },
+  })
+
+  const paperStyle = {
+    padding: 20,
+    width: 413,
+    margin: "20px auto",
+    height: 372,
+  }
   return (
     <div>
       <Header />
