@@ -14,10 +14,10 @@ import { Link } from "react-router-dom"
 
 
 export const Register = () => {
-  const dispatch = useAppDispatch()
- useEffect(() => {
-   dispatch(authThunk.me())
- }, [])
+const dispatch = useAppDispatch()
+//  useEffect(() => {
+//    dispatch(authThunk.me())
+//  }, [])
 
   const formik = useFormik({
     initialValues: {

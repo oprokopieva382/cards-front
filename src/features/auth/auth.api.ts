@@ -1,18 +1,21 @@
 import axios from "axios"
 import { instance } from "../../comon/api/common.api"
 import { InformType } from "./auth.slice"
-import { ArrowRight } from "@mui/icons-material"
 
 export const authAPI = {
   register: (arg: ArgRegisterType) => {
     return instance.post<RegisterResponseType>("auth/register", arg)
   },
   login: (arg: ArgLoginType) => {
-    return axios.post<LoginResponseType>(
-      "https://neko-back.herokuapp.com/2.0/auth/login",
+    // return axios.post<LoginResponseType>(
+    //   "https://neko-back.herokuapp.com/2.0/auth/login",
+    //   arg,
+    //   { withCredentials: true },
+    // )
+    return instance.post<LoginResponseType>(
+      "auth/login",
       arg,
-      { withCredentials: true },
-    )
+         )
   },
   logOut: () => {
     return instance.delete<InformType>("auth/me")

@@ -10,59 +10,115 @@ import {
 } from "./auth.api"
 import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
 import { setAppInitializedAction } from "../../comon/utils/setAppInitializedAction"
+import { appActions } from "../../app/app.slice"
+import { thunkTryCatch } from "../../comon/utils/thunk-try-catch"
 
 const register = createAppAsyncThunk<
   { path: PathDirectionType },
   ArgRegisterType
->("auth/register", async (arg, thunkAPI) => {
-  await authAPI.register(arg)
-  return { path: "auth/login" }
+>("auth/register", async (arg: ArgRegisterType, ThunkAPI) => {
+  return thunkTryCatch(ThunkAPI, async () => {
+    const res = await authAPI.register(arg)
+    return { path: "auth/login" }
+  })
 })
+// const { rejectWithValue, dispatch } = ThunkAPI
+// try {
+//   await authAPI.register(arg)
+//   return { path: "auth/login" }
+// } catch (e: any) {
+//   const error = e.response ? e.response.data.error : e.message
+//   dispatch(appActions.setAppError({ error }))
+//   return rejectWithValue(null)
+// }
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>(
   "auth/login",
-
   async (arg: ArgLoginType, ThunkAPI) => {
-    const { rejectWithValue, dispatch } = ThunkAPI
-    try {
+    return thunkTryCatch(ThunkAPI, async () => {
       const res = await authAPI.login(arg)
       return { profile: res.data }
-    } catch (e) {
-      return rejectWithValue(e)
-    }
+    })
   },
 )
 
-const logOut = createAppAsyncThunk<InformType>("auth/logOut", async () => {
-  const res = await authAPI.logOut()
-  return { info: res.data.info }
-})
+//   const { rejectWithValue, dispatch } = ThunkAPI
+//   try {
+//     const res = await authAPI.login(arg)
+//     return { profile: res.data }
+//   } catch (e: any) {
+//     const error = e.response ? e.response.data.error : e.message
+//     dispatch(appActions.setAppError({ error }))
+//     return rejectWithValue(null)
+//   }
+// },
+// )
+
+const logOut = createAppAsyncThunk<InformType>(
+  "auth/logOut",
+  async (_, ThunkAPI) => {
+    return thunkTryCatch(ThunkAPI, async () => {
+      const res = await authAPI.logOut()
+      return { info: res.data.info }
+    })
+  },
+)
+//  const { rejectWithValue, dispatch } = ThunkAPI
+//  try {
+//    const res = await authAPI.logOut()
+//    return { info: res.data.info }
+//  } catch (e: any) {
+//    const error = e.response ? e.response.data.error : e.message
+//    dispatch(appActions.setAppError({ error }))
+//    return rejectWithValue(null)
+//  }
 
 const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
-  async (data, { rejectWithValue, dispatch }) => {
-    console.log("me")
-    try {
+  async (data, ThunkAPI) => {
+    return thunkTryCatch(ThunkAPI, async () => {
       const res = await authAPI.me()
       return { profile: res.data }
-    } catch (e) {
-      return rejectWithValue(e)
-    }
-    // finally {
-    //   dispatch(setAppInitializedAction())
-    // }
+    })
   },
 )
+// try {
+//   const res = await authAPI.me()
+//   return { profile: res.data }
+// } catch (e: any) {
+//   const error = e.response ? e.response.data.error : e.message
+//   dispatch(appActions.setAppError({ error }))
+//   return rejectWithValue(null)
+// }
+// finally {
+//   dispatch(setAppInitializedAction())
+// }
+
 const setNewPassword = createAppAsyncThunk<
   { path: PathDirectionType; info: string },
   SetNewPasswordType
->("auth/setNewPassword", async (data) => {
-  const res = await authAPI.setNewPassword(data)
-  return {
-    path: "auth/login",
-    info: res.data.info,
-  }
+>("auth/setNewPassword", async (data, ThunkAPI) => {
+  return thunkTryCatch(ThunkAPI, async () => {
+    const res = await authAPI.setNewPassword(data)
+    return {
+      path: "auth/login",
+      info: res.data.info,
+    }
+  })
 })
+
+// const { rejectWithValue, dispatch } = ThunkAPI
+// try {
+//   const res = await authAPI.setNewPassword(data)
+//   return {
+//     path: "auth/login",
+//     info: res.data.info,
+//   }
+// } catch (e: any) {
+//   const error = e.response ? e.response.data.error : e.message
+//   dispatch(appActions.setAppError({ error }))
+//   return rejectWithValue(null)
+// }
 
 const forgotPassword = createAppAsyncThunk<
   {
@@ -70,22 +126,48 @@ const forgotPassword = createAppAsyncThunk<
     emailMessage: string
   } & InformType,
   ForgotPasswordType
->("auth/forgot", async (arg) => {
-  const res = await authAPI.forgotPassword(arg)
-  return {
-    path: "/auth/check-email",
-    emailMessage: arg.email,
-    info: res.data.info,
-  }
+>("auth/forgot", async (arg, ThunkAPI) => {
+  return thunkTryCatch(ThunkAPI, async () => {
+    const res = await authAPI.forgotPassword(arg)
+    return {
+      path: "/auth/check-email",
+      emailMessage: arg.email,
+      info: res.data.info,
+    }
+  })
 })
+// const { rejectWithValue, dispatch } = ThunkAPI
+//   try {
+//     const res = await authAPI.forgotPassword(arg)
+//     return {
+//       path: "/auth/check-email",
+//       emailMessage: arg.email,
+//       info: res.data.info,
+//     }
+//   } catch (e: any) {
+//     const error = e.response ? e.response.data.error : e.message
+//     dispatch(appActions.setAppError({ error }))
+//     return rejectWithValue(null)
+//   }
 
 const updateProfile = createAppAsyncThunk<
   { profile: ProfileType },
   UpdateProfileType
->("auth/updateProfile", async (arg) => {
-  const res = await authAPI.updateProfile(arg)
-  return { profile: res.data.updatedUser }
+>("auth/updateProfile", async (arg, ThunkAPI) => {
+  return thunkTryCatch(ThunkAPI, async () => {
+    const res = await authAPI.updateProfile(arg)
+    return { profile: res.data.updatedUser }
+  })
 })
+//const { rejectWithValue, dispatch } = ThunkAPI
+// try {
+//   const res = await authAPI.updateProfile(arg)
+//   return { profile: res.data.updatedUser }
+// } catch (e: any) {
+//   const error = e.response ? e.response.data.error : e.message
+//   dispatch(appActions.setAppError({ error }))
+//   return rejectWithValue(null)
+// }
 
 const slice = createSlice({
   name: "auth",

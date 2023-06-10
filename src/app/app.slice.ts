@@ -1,12 +1,11 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { setAppInitializedAction } from "../comon/utils/setAppInitializedAction";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { setAppInitializedAction } from "../comon/utils/setAppInitializedAction"
 
 const initialState = {
   error: null as string | null,
   isLoading: true,
   isAppInitialized: false,
-} 
-
+}
 
 const slice = createSlice({
   name: "app",
@@ -15,9 +14,12 @@ const slice = createSlice({
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading
     },
-     },
-  extraReducers: builder => {
-    builder.addCase(setAppInitializedAction, state=> {
+    setAppError: (state, action: PayloadAction<{ error: string | null }>) => {
+      state.error = action.payload.error
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(setAppInitializedAction, (state) => {
       state.isAppInitialized = true
     })
   },

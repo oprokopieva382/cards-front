@@ -6,6 +6,9 @@ import "./index.css"
 import { RouterProvider } from "react-router-dom"
 import { router } from "./comon/routes/Routes"
 import { createTheme, ThemeProvider } from "@mui/material"
+import "react-toastify/dist/ReactToastify.css"
+import App from "./App"
+import { GlobalError } from "./comon/GlobalError/GlobalError"
 
 const theme = createTheme({
   palette: {
@@ -22,7 +25,9 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
+      {/* <App /> */}
       <RouterProvider router={router} />)
+      <GlobalError />
     </Provider>
   </ThemeProvider>,
 )
