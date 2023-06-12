@@ -70,7 +70,7 @@ const logOut = createAppAsyncThunk<InformType>(
 //    return rejectWithValue(null)
 //  }
 
-const me = createAppAsyncThunk<{ profile: ProfileType }>(
+export const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
   async (data, ThunkAPI) => {
     return thunkTryCatch(ThunkAPI, async () => {
@@ -187,6 +187,7 @@ const slice = createSlice({
       })
       .addCase(me.fulfilled, (state, action) => {
         state.profile = action.payload.profile
+      
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
         state.emailMessage = action.payload.emailMessage

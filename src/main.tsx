@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       {/* <App /> */}
-      <RouterProvider router={router} />)
+      <RouterProvider router={router} />
       <GlobalError />
     </Provider>
   </ThemeProvider>,

@@ -19,8 +19,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      {/* {isLoading && <LinearProgress />}
-      <Counter /> */}
+      {/* <Counter /> */}
       <Header />
       <ComponentEntries />
     </div>

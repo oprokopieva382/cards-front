@@ -8,23 +8,22 @@ import { Outlet } from "react-router-dom"
 import { isAppLoading, isInitialized } from "../../app/app.selectors"
 import { useAppDispatch, useAppSelector } from "../hooks"
 
-
 export const ComponentEntries = () => {
-    const dispatch = useAppDispatch()
-    
-    const isLoading = useAppSelector(isAppLoading)
-    const isAppInitialized = useAppSelector(isInitialized)
+  const dispatch = useAppDispatch()
 
-     useEffect(() => {
-       dispatch(authThunk.me())
-     }, [])
-    return (
-      <>
-        <Box sx={{ height: "4px" }}>{isLoading && <LinearProgress />}</Box>
-        <Container fixed>
-          {isAppInitialized ? <AppPreloader /> : <Outlet />}
-        </Container>
-      </>
-    )
+  const isLoading = useAppSelector(isAppLoading)
+  const isAppInitialized = useAppSelector(isInitialized)
+  console.log(isAppInitialized)
+
+  useEffect(() => {
+    dispatch(authThunk.me())
+  }, [dispatch])
+  return (
+    <>
+      <Box sx={{ height: "4px" }}>{isLoading && <LinearProgress />}</Box>
+      <Container fixed>
+        {!isAppInitialized ? <AppPreloader /> : <Outlet />}
+      </Container>
+    </>
+  )
 }
-

@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice, isFulfilled, isPending, isRejected } from "@reduxjs/toolkit"
 import { setAppInitializedAction } from "../comon/utils"
 import { AxiosError, isAxiosError } from "axios"
 
@@ -22,8 +22,20 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(setAppInitializedAction, (state) => {
-        state.isAppInitialized = true
+        state.isAppInitialized = false
       })
+        .addMatcher(
+        (action) => action.type.endsWith("/fulfilled"),
+        (state) => {
+          state.isAppInitialized = true
+        },
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state) => {
+          state.isAppInitialized = true
+        },
+      )
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
         (state) => {
