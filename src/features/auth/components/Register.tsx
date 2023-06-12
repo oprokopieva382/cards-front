@@ -1,30 +1,23 @@
 import Grid from "@mui/material/Grid"
-import { useAppDispatch } from "../../../app/hooks"
-import { Header } from "../../../comon/components/Header"
+import { Header } from "../../../comon/components"
 import { authThunk } from "../auth.slice"
-import s from "./Register.module.css"
 import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
 import { useFormik } from "formik"
 import { paths } from "../../../comon/routes/paths"
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
-
+import { useAppDispatch } from "../../../comon/hooks"
 
 export const Register = () => {
-const dispatch = useAppDispatch()
-//  useEffect(() => {
-//    dispatch(authThunk.me())
-//  }, [])
+  const dispatch = useAppDispatch()
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      confirmPassword: ""
-   
+      confirmPassword: "",
     },
     onSubmit: (arg) => {
       dispatch(authThunk.register(arg))
@@ -32,14 +25,14 @@ const dispatch = useAppDispatch()
     },
   })
   const paperStyle = {
-  padding: 20,
-  width: 413,
-  margin: "20px auto",
-  height: 552,
-}
+    padding: 20,
+    width: 413,
+    margin: "20px auto",
+    height: 552,
+  }
   return (
     <div>
-     <Header />
+      <Header />
       <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
@@ -73,7 +66,7 @@ const dispatch = useAppDispatch()
               />
             </Grid>
             <Grid textAlign="center" marginTop={"75px"}>
-               <Button
+              <Button
                 style={{ width: "347px", borderRadius: "30px" }}
                 type={"submit"}
                 variant={"contained"}
@@ -84,7 +77,7 @@ const dispatch = useAppDispatch()
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Already have an account?
                 <Grid marginTop={"11px"}>
-                  <Link to={paths.LOGIN}  color={"#366EFF"}>
+                  <Link to={paths.LOGIN} color={"#366EFF"}>
                     {"Sign In"}
                   </Link>
                 </Grid>

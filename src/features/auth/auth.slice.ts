@@ -8,10 +8,7 @@ import {
   UpdateProfileType,
   SetNewPasswordType,
 } from "./auth.api"
-import { createAppAsyncThunk } from "../../comon/utils/create-app-async-thunk"
-import { setAppInitializedAction } from "../../comon/utils/setAppInitializedAction"
-import { appActions } from "../../app/app.slice"
-import { thunkTryCatch } from "../../comon/utils/thunk-try-catch"
+import { thunkTryCatch, createAppAsyncThunk } from "../../comon/utils"
 
 const register = createAppAsyncThunk<
   { path: PathDirectionType },

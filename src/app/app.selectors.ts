@@ -1,5 +1,6 @@
 import { RootState } from "./store";
 
-const isAppInitialized = (state: RootState)=> state.app.isAppInitialized
+const isInitialized = (state: RootState)=> state.app.isAppInitialized
+const isAppLoading = (state: RootState) => state.app.isLoading
 
-export { isAppInitialized }
+export { isInitialized, isAppLoading }

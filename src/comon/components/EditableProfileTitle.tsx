@@ -2,9 +2,10 @@ import BorderColorIcon from "@mui/icons-material/BorderColor"
 import TextField from "@mui/material/TextField"
 import IconButton from "@mui/material/IconButton"
 import Typography from "@mui/material/Typography"
-import { ChangeEvent, useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { ChangeEvent, useState } from "react"
 import { authThunk } from "../../features/auth/auth.slice"
+import { useAppDispatch } from "../hooks/useAppDispatch"
+import { useAppSelector } from "../hooks/useAppSelector"
 
 export const EditableProfileTitle = () => {
 const dispatch = useAppDispatch()

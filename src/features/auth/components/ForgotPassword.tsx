@@ -1,17 +1,17 @@
 import Grid from "@mui/material/Grid"
-import { Header } from "../../../comon/components/Header"
+import { Header } from "../../../comon/components"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import { paths } from "../../../comon/routes/paths"
 import { useFormik } from "formik"
-import { useAppDispatch } from "../../../app/hooks"
 import { authThunk } from "../auth.slice"
 import { emailMessage } from "../constants"
 import { ForgotPasswordType } from "../auth.api"
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
+import { useAppDispatch } from "../../../comon/hooks"
 
 export const ForgotPassword = () => {
   

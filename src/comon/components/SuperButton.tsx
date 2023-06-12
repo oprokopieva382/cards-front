@@ -18,8 +18,8 @@ export const SuperButton: FC<SuperButtonPropsType> = ({
   text,
   startIcon,
 }) => {
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
   const onClickHandler = () => {
     navigate(paths.LOGIN)
   }

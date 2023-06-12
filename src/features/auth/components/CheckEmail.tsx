@@ -1,14 +1,16 @@
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
-import { Header } from "../../../comon/components/Header"
+import { Header } from "../../../comon/components"
 import envelope from "../../../assets/img/Envelope.svg"
 import { Button } from "@mui/material"
 import { paths } from "../../../comon/routes/paths"
 import { emailMessage } from "../auth.selector"
-import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { useEffect } from "react"
 import { authThunk } from "../auth.slice"
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../../comon/hooks"
+
+
 
 export const CheckEmail = () => {
   const dispatch = useAppDispatch()

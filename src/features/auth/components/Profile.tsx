@@ -1,5 +1,3 @@
-import { useAppDispatch } from "../../../app/hooks"
-import { Header } from "../../../comon/components/Header"
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
 import Button from "@mui/material/Button"
@@ -9,21 +7,21 @@ import IconButton from "@mui/material/IconButton"
 import { Logout } from "@mui/icons-material"
 import Badge from "@mui/material/Badge"
 import Box from "@mui/material/Box"
-import { EditableProfileTitle } from "../../../comon/components/EditableProfileTitle"
+import { EditableProfileTitle } from "../../../comon/components"
 import { authThunk } from "../auth.slice"
 import { useNavigate } from "react-router-dom"
 import { paths } from "../../../comon/routes/paths"
-import { useEffect } from "react"
 import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined"
+import { useAppDispatch } from "../../../comon/hooks"
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log("profile")
-    dispatch(authThunk.me())
-  }, [])
+  // // useEffect(() => {
+  // //   console.log("profile")
+  // //   dispatch(authThunk.me())
+  // // }, [])
   //   const formik = useFormik({
   //     initialValues: {},
   //     onSubmit: (arg) => {
@@ -44,7 +42,6 @@ export const Profile = () => {
   }
   return (
     <div>
-      <Header />
       <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
         <Paper elevation={10} style={paperStyle}>
           <h2 style={{ marginBottom: "30px", textAlign: "center" }}>
@@ -63,7 +60,8 @@ export const Profile = () => {
                     height: "30px",
                     border: "1px solid #fff",
                     bgcolor: "#808080",
-                  }}>
+                  }}
+                >
                   <LocalSeeOutlinedIcon
                     sx={{ fontSize: "16px", color: "#FFF" }}
                   />

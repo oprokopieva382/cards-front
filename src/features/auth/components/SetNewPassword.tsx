@@ -1,14 +1,14 @@
 import Grid from "@mui/material/Grid"
-import { Header } from "../../../comon/components/Header"
+import { Header } from "../../../comon/components"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField/TextField"
 import Button from "@mui/material/Button"
-import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { useFormik } from "formik"
 import { emailMessage } from "../auth.selector"
 import { useNavigate, useParams } from "react-router-dom"
 import { authThunk } from "../auth.slice"
 import { paths } from "../../../comon/routes/paths"
+import { useAppDispatch, useAppSelector } from "../../../comon/hooks"
 
 export const SetNewPassword = () => {
   const dispatch = useAppDispatch()

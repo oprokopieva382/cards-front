@@ -1,7 +1,5 @@
-import "./login.css"
 import Paper from "@mui/material/Paper"
 import Grid from "@mui/material/Grid"
-import { Header } from "../../../comon/components/Header"
 import Checkbox from "@mui/material/Checkbox"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Typography from "@mui/material/Typography"
@@ -9,10 +7,9 @@ import { useFormik } from "formik"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { authThunk } from "../auth.slice"
-import { useAppDispatch } from "../../../app/hooks"
 import { paths } from "../../../comon/routes/paths"
 import { Link, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import { useAppDispatch } from "../../../comon/hooks"
 
 export const Login = () => {
   const dispatch = useAppDispatch()
@@ -39,8 +36,7 @@ export const Login = () => {
   }
   return (
     <Grid>
-      <Header />
-      <Grid marginTop={"120px"}>
+       <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
             <Grid textAlign="center">
