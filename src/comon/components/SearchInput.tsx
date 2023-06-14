@@ -17,6 +17,7 @@ export const SearchInput: FC<PropsType> = ({ fullWidth }) => {
         fullWidth={fullWidth || false}
         id="fullWidth"
         hiddenLabel
+        // size="medium"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

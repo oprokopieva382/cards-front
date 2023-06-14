@@ -14,7 +14,8 @@ export const theme = createTheme({
       main: "#366EFF",
     },
     secondary: {
-      main: "#white",
+      main: "#FFFFFF;",
+      dark: "#EFEFEF",
     },
   },
   shape: { borderRadius: 2 },

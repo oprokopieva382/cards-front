@@ -5,7 +5,6 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import Typography from "@mui/material/Typography"
 import { useFormik } from "formik"
 import TextField from "@mui/material/TextField"
-import Button from "@mui/material/Button"
 import { authThunk } from "../auth.slice"
 import { paths } from "../../../comon/routes/paths"
 import { Link, useNavigate } from "react-router-dom"
@@ -25,7 +24,7 @@ export const Login = () => {
     onSubmit: (arg) => {
       dispatch(authThunk.login(arg))
         .unwrap()
-        .then(() => navigate(paths.PROFILE))
+        .then(() => navigate(paths.PACKS))
     },
   })
 
@@ -37,7 +36,7 @@ export const Login = () => {
   }
   return (
     <Grid>
-       <Grid marginTop={"120px"}>
+      <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
             <Grid textAlign="center">

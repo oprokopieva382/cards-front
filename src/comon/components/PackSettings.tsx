@@ -1,5 +1,4 @@
 import { SearchInput } from "./SearchInput"
-
 import { ShowPacksCards } from "./ShowPacksCards"
 import { CardsCountSlider } from "./CardsCountSlider"
 import { ClearFilter } from "./ClearFilter"
@@ -11,7 +10,10 @@ export const PackSettings = () => {
       display={"flex"}
       flexDirection={"row"}
       alignItems={"center"}
-      justifyContent={"space-around"}
+      justifyContent={"space-between"}
+      width="100%"
+      margin="0 auto"
+      padding=" 40px 0 24px 0 "
     >
       <SearchInput />
       <ShowPacksCards onMe={false} onClick={() => {}} />

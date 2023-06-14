@@ -5,5 +5,5 @@ export const useAuth = () => {
   const profile = useAppSelector(profileSelector)
   const isProfileExists = () => Boolean(profile)
   const isUserAuth = isProfileExists()
-  return { isUserAuth }
+  return { isUserAuth, profile }
 }

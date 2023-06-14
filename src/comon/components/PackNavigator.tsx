@@ -14,7 +14,9 @@ export const PackNavigator: FC<PropsType> = ({ title, buttonTitle }) => {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      marginTop="39px"
+      width={"100%"}
+      margin={"0 auto"}
+      paddingTop={"44px"}
     >
       <Typography sx={{ fontSize: "22px", fontWeight: "600" }}>
         {title}
