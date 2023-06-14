@@ -23,6 +23,8 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.2",
     "@reduxjs/toolkit": "^1.8.1",
+    "ag-grid-community": "^30.0.0",
+    "ag-grid-react": "^30.0.0",
     "axios": "^1.4.0",
     "formik": "^2.4.1",
     "gh-pages": "^5.0.0",

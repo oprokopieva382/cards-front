@@ -2022,6 +2022,18 @@ acorn@^8.1.0, acorn@^8.8.0, acorn@^8.8.2:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.8.2.tgz"
   integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
 
+ag-grid-community@^30.0.0:
+  version "30.0.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-30.0.0.tgz#044361654abbc99f8dd0094c096d4c21f88661df"
+  integrity sha512-KwYJCvcadVPi//wc4Amxp44WuOcSPFHoPsoZlKUpRMhf4vwbTJW2Qksoqsd6iqHzgOW6C7kbxlHmC89hw/8faw==
+
+ag-grid-react@^30.0.0:
+  version "30.0.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-30.0.0.tgz#0e6c5727c73e80fdbe77f5d891174f24ca20c0f1"
+  integrity sha512-p66t9gBGnOCk3Bc5j/91Sgz36tWd1bCknJd0vA/z8kFi3K/Unnz5EN2MJNjtv4TAfFgpRplViYsbS3sr8fdQqw==
+  dependencies:
+    prop-types "^15.8.1"
+
 agent-base@6:
   version "6.0.2"
   resolved "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
