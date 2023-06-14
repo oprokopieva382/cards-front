@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid"
-import { Header } from "../../../comon/components"
+import { Header, SuperButton } from "../../../comon/components"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
@@ -14,10 +14,9 @@ import { useEffect } from "react"
 import { useAppDispatch } from "../../../comon/hooks"
 
 export const ForgotPassword = () => {
-  
-useEffect(() => {
-  dispatch(authThunk.me())
-}, [])
+  useEffect(() => {
+    dispatch(authThunk.me())
+  }, [])
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -34,7 +33,7 @@ useEffect(() => {
       }
       dispatch(authThunk.forgotPassword(payload))
       navigate(paths.CHECK_EMAIL)
-        },
+    },
   })
   const paperStyle = {
     padding: 20,
@@ -44,7 +43,6 @@ useEffect(() => {
   }
   return (
     <div>
-      <Header />
       <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
@@ -63,14 +61,13 @@ useEffect(() => {
                 Enter your email address and we will send you further
                 instructions
               </p>
-              <Button
-                style={{ width: "347px", borderRadius: "30px", marginTop: 73 }}
+              <SuperButton
+                marginTop={73}
                 type={"submit"}
-                variant={"contained"}
-                color={"primary"}
-              >
-                Send instructions
-              </Button>
+                width="347px"
+                borderRadius="30px"
+                text="Send instructions"
+              />
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Did you remember your password?
                 <Grid marginTop={"11px"}>

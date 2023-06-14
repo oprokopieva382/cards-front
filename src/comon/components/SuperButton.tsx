@@ -1,14 +1,16 @@
 import { Button } from "@mui/material"
 import { FC } from "react"
-import { paths } from "../routes/paths"
-import { useNavigate } from "react-router-dom"
 
 type SuperButtonPropsType = {
-  width: string
+  width?: string
   borderRadius?: string
   color?: "primary" | "secondary"
   text: string
   startIcon?: any
+  type?: "submit"
+  onClick?: () => void
+  marginTop?: number
+  variant?: string
 }
 
 export const SuperButton: FC<SuperButtonPropsType> = ({
@@ -17,24 +19,29 @@ export const SuperButton: FC<SuperButtonPropsType> = ({
   color,
   text,
   startIcon,
+  type,
+  onClick,
+  marginTop,
+  variant,
 }) => {
-
-  const navigate = useNavigate()
-  const onClickHandler = () => {
-    navigate(paths.LOGIN)
+  const onClickCallback = () => {
+    onClick?.()
   }
 
   const buttonStyle = {
     width: `${width}`,
     borderRadius: `${borderRadius}`,
+    marginTop: `${marginTop}`,
   }
 
   return (
     <Button
-      variant="contained"
+      variant={"contained" || variant}
       color={color}
       sx={buttonStyle}
-      onClick={onClickHandler}
+      onClick={onClickCallback}
+      type={type || "button"}
+      startIcon={startIcon}
     >
       {text}
     </Button>

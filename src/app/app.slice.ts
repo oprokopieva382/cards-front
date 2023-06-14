@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice, isFulfilled, isPending, isRejected } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { setAppInitializedAction } from "../comon/utils"
 import { AxiosError, isAxiosError } from "axios"
 

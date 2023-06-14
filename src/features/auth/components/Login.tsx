@@ -10,12 +10,13 @@ import { authThunk } from "../auth.slice"
 import { paths } from "../../../comon/routes/paths"
 import { Link, useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../../../comon/hooks"
+import { SuperButton } from "../../../comon/components"
 
 export const Login = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-   const formik = useFormik({
+  const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
@@ -80,14 +81,12 @@ export const Login = () => {
                   {"Forgot password?"}
                 </Link>
               </Typography>
-              <Button
-                style={{ width: "347px", borderRadius: "30px" }}
+              <SuperButton
                 type={"submit"}
-                variant={"contained"}
-                color={"primary"}
-              >
-                Sign in
-              </Button>
+                width="347px"
+                borderRadius="30px"
+                text="Sign In"
+              />
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Don't have an account?
                 <Grid marginTop={"11px"}>

@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid"
-import { Header } from "../../../comon/components"
+import { Header, SuperButton } from "../../../comon/components"
 import { authThunk } from "../auth.slice"
 import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
@@ -32,7 +32,6 @@ export const Register = () => {
   }
   return (
     <div>
-      <Header />
       <Grid marginTop={"120px"}>
         <form onSubmit={formik.handleSubmit}>
           <Paper elevation={10} style={paperStyle}>
@@ -66,14 +65,12 @@ export const Register = () => {
               />
             </Grid>
             <Grid textAlign="center" marginTop={"75px"}>
-              <Button
-                style={{ width: "347px", borderRadius: "30px" }}
+              <SuperButton
                 type={"submit"}
-                variant={"contained"}
-                color={"primary"}
-              >
-                Sign Up
-              </Button>
+                width="347px"
+                borderRadius="30px"
+                text="Sign Up"
+              />
               <Typography textAlign={"center"} style={{ marginTop: 31 }}>
                 Already have an account?
                 <Grid marginTop={"11px"}>

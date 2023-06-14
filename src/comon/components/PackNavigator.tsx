@@ -1,0 +1,25 @@
+import { FC } from "react"
+import Typography from "@mui/material/Typography"
+import { SuperButton } from "."
+import { Box } from "@mui/material"
+
+type PropsType = {
+  title: string
+  buttonTitle: string
+}
+
+export const PackNavigator: FC<PropsType> = ({ title, buttonTitle }) => {
+  return (
+    <Box
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-between"
+      marginTop="39px"
+    >
+      <Typography sx={{ fontSize: "22px", fontWeight: "600" }}>
+        {title}
+      </Typography>
+      <SuperButton text={buttonTitle} borderRadius="30px" width="175px" />
+    </Box>
+  )
+}

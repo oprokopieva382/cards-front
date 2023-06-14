@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
-import { Header } from "../../../comon/components"
+import { Header, SuperButton } from "../../../comon/components"
 import envelope from "../../../assets/img/Envelope.svg"
 import { Button } from "@mui/material"
 import { paths } from "../../../comon/routes/paths"
@@ -9,8 +9,6 @@ import { useEffect } from "react"
 import { authThunk } from "../auth.slice"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../../comon/hooks"
-
-
 
 export const CheckEmail = () => {
   const dispatch = useAppDispatch()
@@ -31,7 +29,6 @@ export const CheckEmail = () => {
   }
   return (
     <>
-      <Header />
       <Grid marginTop={"120px"} textAlign={"center"}>
         <Paper elevation={10} style={paperStyle}>
           <h2 style={{ marginBottom: "29px" }}>CheckEmail</h2>
@@ -42,15 +39,16 @@ export const CheckEmail = () => {
             style={{ width: "108px", color: "#96afd9", marginBottom: "31px" }}
           />
           <p>{`We've sent an Email with instructions to ${email}`}</p>
-          <Button
-            onClick={()=> {navigate(paths.LOGIN)}}
-            style={{ width: "347px", borderRadius: "30px", marginTop: 41 }}
+          <SuperButton
+            marginTop={41}
             type={"submit"}
-            variant={"contained"}
-            color={"primary"}
-          >
-            Back to login
-          </Button>
+            width="347px"
+            borderRadius="30px"
+            text="Back to login"
+            onClick={() => {
+              navigate(paths.LOGIN)
+            }}
+          />
         </Paper>
       </Grid>
     </>
