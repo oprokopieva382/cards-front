@@ -1,24 +1,16 @@
 import Container from "@mui/material/Container"
-import { SuperButton } from "../../../comon/components/SuperButton"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import Button from "@mui/material/Button"
-import { useNavigate } from "react-router-dom"
-import { paths } from "../../../comon/routes/paths"
+import { SuperButton } from "./SuperButton"
+import { BackToPackListButton } from "./BackToPackListButton"
+
 
 export const EmptyPackPage = () => {
-  const navigate = useNavigate()
+
   return (
     <Container maxWidth="lg">
       <Box width={"100%"} margin={"0 auto"} paddingTop={"24px"}>
-        <Button
-          onClick={() => navigate(paths.PACKS)}
-          color="inherit"
-          startIcon={<ArrowBackIcon />}
-        >
-          Back to Packs List
-        </Button>
+        <BackToPackListButton/>
         <Typography
           sx={{ fontSize: "22px", fontWeight: "600", paddingTop: "27px" }}
         >

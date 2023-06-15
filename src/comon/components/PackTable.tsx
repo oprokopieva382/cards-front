@@ -1,21 +1,14 @@
-import * as React from "react"
-import Paper from "@mui/material/Paper"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
+import { Paper, Table, TableBody, TableContainer, TableHead, TableRow, styled } from "@mui/material"
 import TableCell, { tableCellClasses } from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableHead from "@mui/material/TableHead"
-import TableRow from "@mui/material/TableRow"
-import { useState } from "react"
-import {  styled } from "@mui/material"
 import { PaginationComponent } from "./PaginationComponent"
-import { ActionButtons} from "../../../comon/components/ActionButtons"
+import { useState } from "react"
+import { Rate } from "./Rate"
 
 interface Column {
-  id: "name" | "cards" | "updated" | "created" | "actions"
+  id: "question" | "answer" | "lastUpdated" | "grade" 
   label: string
   minWidth?: number
-  align?: "right"
+  align?: "center"
   format?: (value: number) => string
 }
 
@@ -31,51 +24,40 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }))
 
 const columns: readonly Column[] = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "cards", label: "Cards", minWidth: 100 },
-  { id: "updated", label: "Last Updated", minWidth: 100 },
-  { id: "created", label: "Created by", minWidth: 100 },
-  { id: "actions", label: "Actions", minWidth: 100 },
+  { id: "question", label: "Question", minWidth: 170, align: "center" },
+  { id: "answer", label: "Answer", minWidth: 100, align: "center" },
+  { id: "lastUpdated", label: "Last Updated", minWidth: 100, align: "center" },
+  { id: "grade", label: "Grade", minWidth: 100, align: "center" },
 ]
 
 interface Data {
-  name: string
-  cards: number
-  updated: string
-  created: string
-  actions: any
+  question: string
+  answer: string
+  lastUpdated: string
+  grade: any
 }
 
 function createData(
-  name: string,
-  cards: number,
-  updated: string,
-  created: string,
-  actions: any,
+  question: string,
+  answer: string,
+  lastUpdated: string,
+  grade: any,
 ): Data {
-  return { name, cards, updated, created, actions }
+  return { question, answer, grade, lastUpdated }
 }
 
 const rows = [
-  createData("Pack Name", 4, "18.03.2021", "Ivan Ivanov", <ActionButtons />),
-  createData("Pack Name", 37, "18.03.2021", "Ivan Ivanov", <ActionButtons />),
-  createData("Pack Name", 18, "18.03.2021", "Ivan Ivanov", <ActionButtons />),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
-  createData("Pack Name", 0, "18.03.2021", "Ivan Ivanov", "img"),
+  createData("How 'This' works in JavaScript?",  "This is how 'This' works in JavaScript", "18.03.2021", <Rate />),
+  createData("How 'This' works in JavaScript?",  "This is how 'This' works in JavaScript", "18.03.2021", <Rate />),
+  createData("How 'This' works in JavaScript?",  "This is how 'This' works in JavaScript", "18.03.2021", <Rate />),
+  createData("How 'This' works in JavaScript?",  "This is how 'This' works in JavaScript", "18.03.2021", <Rate />),
+  createData("How 'This' works in JavaScript?",  "This is how 'This' works in JavaScript", "18.03.2021", <Rate />),
+
+
 ]
 
 export const PackTable = () => {
-  const [page, setPage] = React.useState(0)
+   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -116,7 +98,7 @@ export const PackTable = () => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.cards}
+                      key={row.answer}
                     >
                       {columns.map((column) => {
                         const value = row[column.id]
@@ -135,7 +117,8 @@ export const PackTable = () => {
           </Table>
         </TableContainer>
       </Paper>
-      <PaginationComponent count={10}/>
-          </>
+      <PaginationComponent count={10} />
+    </>
   )
 }
+

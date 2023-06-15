@@ -1,6 +1,8 @@
 import "./App.css"
 import { Header } from "./comon/components"
 import { ComponentEntries } from "./comon/components"
+import { FriendsPack } from "./comon/components/FriendsPack"
+
 
 
 export const App = () => {
@@ -22,7 +24,8 @@ export const App = () => {
     <div className="App">
       {/* <Counter /> */}
       <Header />
-      <ComponentEntries />
+      {/* <ComponentEntries /> */}
+<FriendsPack/>
     </div>
   )
 }

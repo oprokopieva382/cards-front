@@ -9,6 +9,10 @@ type PropsType = {
 }
 
 export const PackNavigator: FC<PropsType> = ({ title, buttonTitle }) => {
+
+  const onClickHandler = () => {
+    }
+
   return (
     <Box
       display="flex"
@@ -21,7 +25,12 @@ export const PackNavigator: FC<PropsType> = ({ title, buttonTitle }) => {
       <Typography sx={{ fontSize: "22px", fontWeight: "600" }}>
         {title}
       </Typography>
-      <SuperButton text={buttonTitle} borderRadius="30px" width="175px" />
+      <SuperButton
+        text={buttonTitle}
+        borderRadius="30px"
+        width="175px"
+        onClick={onClickHandler}
+      />
     </Box>
   )
 }
