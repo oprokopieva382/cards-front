@@ -24,8 +24,8 @@ export const App = () => {
     <div className="App">
       {/* <Counter /> */}
       <Header />
-      {/* <ComponentEntries /> */}
-<FriendsPack/>
+      <ComponentEntries />
+{/* <FriendsPack/> */}
     </div>
   )
 }

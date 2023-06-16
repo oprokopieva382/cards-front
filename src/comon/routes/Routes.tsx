@@ -14,7 +14,7 @@ import { RequiresAuth } from "../hok/RequiresAuth"
 import { Auth } from "../hok/Auth"
 import { Cards } from "../../features/auth/components/Cards"
 import { Learn } from "../../features/auth/components/Learn"
-import { Packs } from "../../features/auth/components/Packs"
+import { Packs } from "../../features/packs/components/Packs"
 
 export const router = createHashRouter([
   {
