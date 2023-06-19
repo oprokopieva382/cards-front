@@ -2,14 +2,30 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import ButtonGroup from "@mui/material/ButtonGroup"
 import Typography from "@mui/material/Typography"
-import { FC } from "react"
+import { FC, useState } from "react"
+import { useAppSelector } from "../hooks/useAppSelector"
+import { useAppDispatch } from "../hooks/useAppDispatch"
+import { packThunk } from "../../features/packs/packs.slice"
+
+
 type PropsType = {
   onClick: () => void
-  disabled?: boolean
-  onMe: boolean
 }
 
-export const ShowPacksCards: FC<PropsType> = ({ onClick, disabled, onMe }) => {
+export const ShowPacksCards: FC<PropsType> = ({ onClick }) => {
+  const [disabled, setDisabled] = useState(false)
+  const iD = useAppSelector((state) => state.auth.profile?._id)
+  const dispatch = useAppDispatch()
+
+  const onClickHandlerMy = () => {
+    dispatch(packThunk.getPacks({ user_id: iD }))
+    onClick()
+  }
+  const onClickHandlerAll = () => {
+    dispatch(packThunk.getPacks({}))
+    onClick()
+  }
+
   return (
     <Box
       sx={{
@@ -23,14 +39,9 @@ export const ShowPacksCards: FC<PropsType> = ({ onClick, disabled, onMe }) => {
         Show packs cards
       </Typography>
       <ButtonGroup variant="outlined">
-        <Button onClick={() => {}} disabled={disabled || !onMe}>
-          My
-        </Button>
-        <Button onClick={() => {}} disabled={disabled || onMe}>
-          All
-        </Button>
+        <Button onClick={onClickHandlerMy}>My</Button>
+        <Button onClick={onClickHandlerAll}>All</Button>
       </ButtonGroup>
     </Box>
   )
 }
-

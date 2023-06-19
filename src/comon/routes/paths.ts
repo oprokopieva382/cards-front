@@ -8,7 +8,7 @@ export const paths = {
   SET_NEW_PASSWORD: "/auth/set-new-password/:token",
   FORGOT_PASSWORD: "/auth/forgot-password",
   PROFILE: "/profile",
-  PACKS: "/packs",
+  PACKS: "/pack",
   CARDS: "/cards",
   LEARN: "/learn",
   SANDBOX: "/sandbox",

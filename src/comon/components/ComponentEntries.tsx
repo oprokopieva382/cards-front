@@ -14,10 +14,11 @@ export const ComponentEntries = () => {
   const isLoading = useAppSelector(isAppLoading)
   const isAppInitialized = useAppSelector(isInitialized)
   console.log(isAppInitialized)
+  console.log(isLoading)
 
   useEffect(() => {
     dispatch(authThunk.me())
-  }, [dispatch])
+  }, [])
   return (
     <>
       <Box sx={{ height: "4px" }}>{isLoading && <LinearProgress />}</Box>

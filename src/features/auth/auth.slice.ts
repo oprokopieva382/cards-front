@@ -8,7 +8,8 @@ import {
   UpdateProfileType,
   SetNewPasswordType,
 } from "./auth.api"
-import { thunkTryCatch, createAppAsyncThunk } from "../../comon/utils"
+import { thunkTryCatch, createAppAsyncThunk, setAppInitializedAction } from "../../comon/utils"
+import { appActions } from "../../app/app.slice"
 
 const register = createAppAsyncThunk<
   { path: PathDirectionType },
@@ -73,12 +74,14 @@ const logOut = createAppAsyncThunk<InformType>(
 export const me = createAppAsyncThunk<{ profile: ProfileType }>(
   "auth/me",
   async (data, ThunkAPI) => {
+   
     return thunkTryCatch(ThunkAPI, async () => {
       const res = await authAPI.me()
       return { profile: res.data }
     })
   },
 )
+//  const {dispatch, rejectWithValue}= ThunkAPI
 // try {
 //   const res = await authAPI.me()
 //   return { profile: res.data }
@@ -89,7 +92,7 @@ export const me = createAppAsyncThunk<{ profile: ProfileType }>(
 // }
 // finally {
 //   dispatch(setAppInitializedAction())
-// }
+// }})
 
 const setNewPassword = createAppAsyncThunk<
   { path: PathDirectionType; info: string },

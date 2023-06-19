@@ -4,7 +4,7 @@ import { AxiosError, isAxiosError } from "axios"
 
 const initialState = {
   error: null as string | null,
-  isLoading: false,
+  isLoading: true,
   isAppInitialized: false,
 }
 
@@ -22,9 +22,9 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(setAppInitializedAction, (state) => {
-        state.isAppInitialized = false
+        state.isAppInitialized = true
       })
-        .addMatcher(
+      .addMatcher(
         (action) => action.type.endsWith("/fulfilled"),
         (state) => {
           state.isAppInitialized = true
@@ -36,12 +36,12 @@ const slice = createSlice({
           state.isAppInitialized = true
         },
       )
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.isLoading = true
-        },
-      )
+      // .addMatcher(
+      //   (action) => action.type.endsWith("/pending"),
+      //   (state) => {
+      //     state.isLoading = true
+      //   },
+      // )
       .addMatcher(
         (action) => action.type.endsWith("/fulfilled"),
         (state) => {

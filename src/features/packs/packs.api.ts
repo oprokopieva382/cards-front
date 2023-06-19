@@ -4,6 +4,12 @@ export const PacksAPI = {
   getPacks: (params: ArgParamsType = {}) => {
     return instance.get<GetPackResponseType>("cards/pack", { params: params })
   },
+  addPack: (arg: AddPackType) => {
+    return instance.post<{ newCardsPack: PackType }>("cards/pack", {
+      name: arg.name,
+      user_id: arg.user_id,
+    })
+  },
 }
 
 export type GetPackResponseType = {
@@ -44,3 +50,14 @@ export type PackType = {
   more_id: string
   __v: number
 }
+export type RequestAddPackType = {
+  user_id: string | undefined
+  name: string
+  deckCover?: string
+  private?: boolean
+}
+
+export type AddPackType = Omit<RequestAddPackType, "user_id">
+// export type AddPackType = {
+//   newCardsPack: responseAddPackType
+// }
