@@ -2,29 +2,25 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import ButtonGroup from "@mui/material/ButtonGroup"
 import Typography from "@mui/material/Typography"
-import { FC, useState } from "react"
-import { useAppSelector } from "../hooks/useAppSelector"
-import { useAppDispatch } from "../hooks/useAppDispatch"
-import { packThunk } from "../../features/packs/packs.slice"
+import { FC} from "react"
 
 
-type PropsType = {
-  onClick: () => void
+type ShowPackCardsType = {
+  onClick: ()=> void
+  onMy: boolean
+  setOnMy: (value: boolean)=> void
 }
 
-export const ShowPacksCards: FC<PropsType> = ({ onClick }) => {
-  const [disabled, setDisabled] = useState(false)
-  const iD = useAppSelector((state) => state.auth.profile?._id)
-  const dispatch = useAppDispatch()
+export const ShowPacksCards: FC<ShowPackCardsType> = ({ onClick, onMy, setOnMy }) => {
 
   const onClickHandlerMy = () => {
-    dispatch(packThunk.getPacks({ user_id: iD }))
+    setOnMy(!onMy)
     onClick()
   }
   const onClickHandlerAll = () => {
-    dispatch(packThunk.getPacks({}))
-    onClick()
-  }
+     setOnMy(!onMy)
+     onClick()
+   }
 
   return (
     <Box

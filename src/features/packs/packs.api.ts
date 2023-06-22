@@ -4,11 +4,16 @@ export const PacksAPI = {
   getPacks: (params: ArgParamsType = {}) => {
     return instance.get<GetPackResponseType>("cards/pack", { params: params })
   },
-  addPack: (arg: AddPackType) => {
-    return instance.post<{ newCardsPack: PackType }>("cards/pack", {
-      name: arg.name,
-      user_id: arg.user_id,
+  addPack: (cardsPack: AddPackType) => {
+    return instance.post<CreatePackResponseType>("cards/pack", { cardsPack })
+  },
+  deletePack: (id: string) => {
+    return instance.delete<DeletedPackResponseType>("cards/pack", {
+      params: { _id: id },
     })
+  },
+  updatePack: (cardsPack: PackType) => {
+    return instance.put<UpdatedPackResponseType>("cards/pack", { cardsPack })
   },
 }
 
@@ -19,8 +24,6 @@ export type GetPackResponseType = {
   minCardsCount: number
   page: number
   pageCount: number
-  // token: string
-  // tokenDeathTime: number
 }
 
 export type ArgParamsType = {
@@ -35,29 +38,44 @@ export type ArgParamsType = {
 }
 export type PackType = {
   _id: string
-  user_id: string
-  user_name: string
-  private: boolean 
+  user_id?: string
+  user_name?: string
+  private?: boolean
   name: string
-  path: string
-  grade: number
-  shots: number
-  cardsCount: number
-  type: "pack"
-  rating: number
-  created: string
-  updated: string
-  more_id: string
-  __v: number
+  path?: string
+  grade?: number
+  shots?: number
+  cardsCount?: number
+  type?: "pack"
+  rating?: number
+  created?: string
+  updated?: string
+  more_id?: string
+  __v?: number
 }
-export type RequestAddPackType = {
-  user_id: string | undefined
+
+export type CreatePackResponseType = {
+  newCardsPack: PackType
+  token: string
+  tokenDeathTime: number
+}
+export type DeletedPackResponseType = {
+  deletedCardsPack: PackType
+  token: string
+  tokenDeathTime: number
+}
+export type UpdatedPackResponseType = {
+  updatedCardsPack: PackType
+  token: string
+  tokenDeathTime: number
+}
+export type UpdatePackType = {
+  _id: string
   name: string
+}
+
+export type AddPackType = {
+  name?: string
   deckCover?: string
   private?: boolean
 }
-
-export type AddPackType = Omit<RequestAddPackType, "user_id">
-// export type AddPackType = {
-//   newCardsPack: responseAddPackType
-// }

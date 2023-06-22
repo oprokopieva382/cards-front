@@ -76,8 +76,8 @@ export const me = createAppAsyncThunk<{ profile: ProfileType }>(
   async (data, ThunkAPI) => {
    
     return thunkTryCatch(ThunkAPI, async () => {
-      const res = await authAPI.me()
-      return { profile: res.data }
+         const res = await authAPI.me()
+        return { profile: res.data }
     })
   },
 )
@@ -221,5 +221,5 @@ export type InformType = {
   error?: string
 }
 
-type PathDirectionType = "auth/login" | "/auth/check-email" | "/"
+type PathDirectionType = "/auth/login" | "/auth/check-email" | "/" | "/packs"
 type InfoMessageType = { info: string }

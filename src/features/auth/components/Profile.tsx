@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom"
 import { paths } from "../../../comon/routes/paths"
 import LocalSeeOutlinedIcon from "@mui/icons-material/LocalSeeOutlined"
 import { useAppDispatch } from "../../../comon/hooks"
+import { BackToPackListButton } from "../../../comon/components/BackToPackListButton"
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
@@ -42,6 +43,7 @@ export const Profile = () => {
   }
   return (
     <div>
+      <BackToPackListButton/>
       <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
         <Paper elevation={10} style={paperStyle}>
           <h2 style={{ marginBottom: "30px", textAlign: "center" }}>

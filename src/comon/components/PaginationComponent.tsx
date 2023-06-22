@@ -4,17 +4,30 @@ import FormHelperText from "@mui/material/FormHelperText/FormHelperText"
 import MenuItem from "@mui/material/MenuItem/MenuItem"
 import Pagination from "@mui/material/Pagination"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
-import { useState } from "react"
+import { useAppSelector } from "../hooks"
+import {
+  pageCountSelector,
+  pageSelector,
+  totalCountSelector,
+} from "../../features/packs"
 
 export type PaginationPropsType = {
-  count: number
+  onChangePaginationHandler: (page: string, pageCount: string) => void
 }
 
-export const PaginationComponent: React.FC<PaginationPropsType> = ({ count }) => {
-  const [age, setAge] = useState("5")
+export const PaginationComponent: React.FC<PaginationPropsType> = ({
+   onChangePaginationHandler,
+}) => {
+  const page = useAppSelector(pageSelector)
+  const totalCount = useAppSelector(totalCountSelector)
+  const pageCount = useAppSelector(pageCountSelector)
+  const lastPage = Math.ceil(totalCount / pageCount)
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value)
+    onChangePaginationHandler(page.toString(), event.target.value)
+  }
+  const onPaginationChange = (e:React.ChangeEvent<unknown>, page: number)=> {
+onChangePaginationHandler(page.toString(), pageCount.toString())
   }
   return (
     <>
@@ -26,10 +39,12 @@ export const PaginationComponent: React.FC<PaginationPropsType> = ({ count }) =>
         }}
       >
         <Pagination
-          count={count}
+          count={lastPage}
+          page={page || 1}
           shape="rounded"
           sx={{ marginTop: 3 }}
           color="primary"
+          onChange={onPaginationChange}
         />
         <FormControl
           sx={{
@@ -43,15 +58,15 @@ export const PaginationComponent: React.FC<PaginationPropsType> = ({ count }) =>
         >
           <FormHelperText>Show</FormHelperText>
           <Select
-            value={age}
+            value={String(pageCount)}
             onChange={handleChange}
             displayEmpty
             inputProps={{ "aria-label": "Without label" }}
             sx={{ height: "30px" }}
           >
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={"4"}>4</MenuItem>
+            <MenuItem value={"7"}>7</MenuItem>
+            <MenuItem value={"10"}>10</MenuItem>
           </Select>
           <FormHelperText>Cards Per Page</FormHelperText>
         </FormControl>

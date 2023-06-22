@@ -32,6 +32,17 @@ export const CardsCountSlider: FC<PropsType> = ({
     lineHeight: "20px",
     textAlign: "center",
   }
+
+const onMouseUpHandler = ()=> {
+onChange(minMax[0].toString(), minMax[1].toString())
+}
+
+const onChangeHandler = (event: Event, value: number | number[]) => {
+  if (Array.isArray(value)) {
+    setMinMax(value)
+  }
+}
+
   return (
     <Box
       sx={{
@@ -50,8 +61,8 @@ export const CardsCountSlider: FC<PropsType> = ({
         </Box>
         <Slider
           value={minMax}
-          onMouseUp={() => {}}
-          onChange={() => {}}
+          onMouseUp={onMouseUpHandler}
+          onChange={onChangeHandler}
           sx={{ m: "0 20px" }}
           disabled={disabled}
         />

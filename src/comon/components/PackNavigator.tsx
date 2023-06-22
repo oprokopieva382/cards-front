@@ -2,8 +2,9 @@ import { FC } from "react"
 import Typography from "@mui/material/Typography"
 import { SuperButton } from "."
 import { Box } from "@mui/material"
-import { useAppDispatch, useAppSelector } from "../hooks"
+import { useAppDispatch } from "../hooks"
 import { packThunk } from "../../features/packs/packs.slice"
+import { useAppSelector } from "../hooks/useAppSelector"
 
 type PropsType = {
   title: string
@@ -12,13 +13,12 @@ type PropsType = {
 
 export const PackNavigator: FC<PropsType> = ({ title, buttonTitle }) => {
   const dispatch = useAppDispatch()
-  const mypack = useAppSelector(state=> state.pack.packs.cardPacks)
-   const id = useAppSelector((state) => state.auth.profile?._id)
-console.log(mypack)
+  const iD = useAppSelector((state) => state.auth.profile?._id)
+ 
   const onClickHandler = () => {
     if (buttonTitle === "Add new pack") {
-      dispatch(packThunk.addNewPack({ name: "yo", user_id: id }))
-      dispatch(packThunk.getPacks({ user_id: id }))
+      dispatch(packThunk.addNewPack({ name: "yo-yo-yo" }))
+      dispatch(packThunk.getPacks())
     }
   }
 
@@ -43,3 +43,7 @@ console.log(mypack)
     </Box>
   )
 }
+
+
+
+

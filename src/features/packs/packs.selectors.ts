@@ -1,5 +1,15 @@
 import { RootState } from "../../app/store";
 
-const packsSelector = (state: RootState)=> state.pack.packs
+const packsSelector = (state: RootState)=> state.pack.cardPacks
+const paramsSelector = (state: RootState)=> state.pack.params
+const pageSelector = (state: RootState)=> state.pack.page
+const pageCountSelector = (state: RootState)=> state.pack.pageCount
+const totalCountSelector = (state: RootState)=> state.pack.cardPacksTotalCount
 
-export { packsSelector }
+export {
+  packsSelector,
+  paramsSelector,
+  pageSelector,
+  pageCountSelector,
+  totalCountSelector,
+}
