@@ -2,25 +2,30 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import ButtonGroup from "@mui/material/ButtonGroup"
 import Typography from "@mui/material/Typography"
-import { FC} from "react"
-
+import { FC, memo } from "react"
 
 type ShowPackCardsType = {
-  onClick: ()=> void
+  onClick: () => void
   onMy: boolean
-  setOnMy: (value: boolean)=> void
+  setOnMy: (value: boolean) => void
+  disabled: boolean
 }
 
-export const ShowPacksCards: FC<ShowPackCardsType> = ({ onClick, onMy, setOnMy }) => {
-
+export const ShowPacksCards: FC<ShowPackCardsType> = memo(({
+  onClick,
+  onMy,
+  setOnMy,
+  disabled
+}) => {
+  console.log(onMy)
   const onClickHandlerMy = () => {
     setOnMy(!onMy)
     onClick()
   }
   const onClickHandlerAll = () => {
-     setOnMy(!onMy)
-     onClick()
-   }
+    setOnMy(!onMy)
+    onClick()
+  }
 
   return (
     <Box
@@ -35,9 +40,13 @@ export const ShowPacksCards: FC<ShowPackCardsType> = ({ onClick, onMy, setOnMy }
         Show packs cards
       </Typography>
       <ButtonGroup variant="outlined">
-        <Button onClick={onClickHandlerMy}>My</Button>
-        <Button onClick={onClickHandlerAll}>All</Button>
+        <Button onClick={onClickHandlerMy} disabled={disabled || !onMy}>
+          My
+        </Button>
+        <Button onClick={onClickHandlerAll} disabled={disabled || onMy}>
+          All
+        </Button>
       </ButtonGroup>
     </Box>
   )
-}
+})

@@ -10,13 +10,16 @@ import {
   pageSelector,
   totalCountSelector,
 } from "../../features/packs"
+import { memo } from "react"
 
 export type PaginationPropsType = {
   onChangePaginationHandler: (page: string, pageCount: string) => void
+  disabled: boolean
 }
 
-export const PaginationComponent: React.FC<PaginationPropsType> = ({
-   onChangePaginationHandler,
+export const PaginationComponent: React.FC<PaginationPropsType> = memo(({
+  onChangePaginationHandler,
+  disabled
 }) => {
   const page = useAppSelector(pageSelector)
   const totalCount = useAppSelector(totalCountSelector)
@@ -26,8 +29,8 @@ export const PaginationComponent: React.FC<PaginationPropsType> = ({
   const handleChange = (event: SelectChangeEvent) => {
     onChangePaginationHandler(page.toString(), event.target.value)
   }
-  const onPaginationChange = (e:React.ChangeEvent<unknown>, page: number)=> {
-onChangePaginationHandler(page.toString(), pageCount.toString())
+  const onPaginationChange = (e: React.ChangeEvent<unknown>, page: number) => {
+    onChangePaginationHandler(page.toString(), pageCount.toString())
   }
   return (
     <>
@@ -45,6 +48,7 @@ onChangePaginationHandler(page.toString(), pageCount.toString())
           sx={{ marginTop: 3 }}
           color="primary"
           onChange={onPaginationChange}
+          disabled={disabled}
         />
         <FormControl
           sx={{
@@ -63,6 +67,7 @@ onChangePaginationHandler(page.toString(), pageCount.toString())
             displayEmpty
             inputProps={{ "aria-label": "Without label" }}
             sx={{ height: "30px" }}
+            disabled={disabled}
           >
             <MenuItem value={"4"}>4</MenuItem>
             <MenuItem value={"7"}>7</MenuItem>
@@ -73,4 +78,4 @@ onChangePaginationHandler(page.toString(), pageCount.toString())
       </Container>
     </>
   )
-}
+})

@@ -8,9 +8,7 @@ export const PacksAPI = {
     return instance.post<CreatePackResponseType>("cards/pack", { cardsPack })
   },
   deletePack: (id: string) => {
-    return instance.delete<DeletedPackResponseType>("cards/pack", {
-      params: { _id: id },
-    })
+    return instance.delete<DeletedPackResponseType>(`cards/pack?id=${id}`)
   },
   updatePack: (cardsPack: PackType) => {
     return instance.put<UpdatedPackResponseType>("cards/pack", { cardsPack })
@@ -72,7 +70,7 @@ export type UpdatedPackResponseType = {
 export type UpdatePackType = {
   _id: string
   name: string
-}
+  }
 
 export type AddPackType = {
   name?: string

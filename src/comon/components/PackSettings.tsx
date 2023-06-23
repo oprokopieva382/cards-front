@@ -6,6 +6,7 @@ import Box from "@mui/material/Box"
 import { PaginationComponent } from "./PaginationComponent"
 import { FC } from "react"
 import { usePackFilter } from "../../features/packs/hooks/usePackFilter"
+import { useAppState } from "../hooks"
 
 type PackPropsType = {
   children: React.ReactNode
@@ -22,9 +23,9 @@ export const PackSettings: FC<PackPropsType> = ({ children }) => {
     setSliderValue,
     onChangeSliderHandler,
     resetFiltering,
-    onChangePaginationHandler
+    onChangePaginationHandler,
   } = usePackFilter()
-
+const {isLoading}= useAppState()
   return (
     <>
       <Box
@@ -36,24 +37,30 @@ export const PackSettings: FC<PackPropsType> = ({ children }) => {
         margin="0 auto"
         padding=" 40px 0 24px 0 "
       >
-        <SearchInput value={search} onChange={onSearchTextChange} />
+        <SearchInput
+          value={search}
+          onChange={onSearchTextChange}
+          disabled={isLoading}
+        />
         <ShowPacksCards
           onClick={onClickShowPacksCard}
           onMy={onMy}
           setOnMy={setOnMy}
+          disabled={isLoading}
         />
         <CardsCountSlider
           minMax={sliderValue}
           onChange={onChangeSliderHandler}
           setMinMax={setSliderValue}
+          disabled={isLoading}
         />
-        <ClearFilter resetFiltering={resetFiltering} />
+        <ClearFilter resetFiltering={resetFiltering} disabled={isLoading} />
       </Box>
       {children}
       <Box>
         <PaginationComponent
           onChangePaginationHandler={onChangePaginationHandler}
-         
+          disabled={isLoading}
         />
       </Box>
     </>

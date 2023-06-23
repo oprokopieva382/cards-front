@@ -15,11 +15,11 @@ export const usePackFilter = () => {
   const [timOutId, setTimeOutId] = useState<number | undefined>(undefined)
   const [searchParams, setSearchParams] = useSearchParams()
   const [sliderValue, setSliderValue] = useState([0, 100])
+  const [sort, setSort] = useState(true)
 
   useEffect(() => {
     setSearchParams({ ...params } as URLSearchParamsInit)
   }, [setSearchParams, params])
-  console.log(params)
 
   const onDispatchParams = useCallback((params: ArgParamsType) => {
     dispatch(packActions.setParams({ params: { ...params } }))
@@ -81,7 +81,13 @@ export const usePackFilter = () => {
     },
     [onDispatchParams],
   )
-  
+  const setSortHandler = useCallback(() => {
+    onDispatchParams({
+      sortPacks: sort ? "1updated" : "0updated",
+      page: "1",
+    })
+  }, [onDispatchParams, sort])
+
   return {
     onDispatchParams,
     onSearchTextDebounce,
@@ -98,5 +104,8 @@ export const usePackFilter = () => {
     onChangeSliderHandler,
     resetFiltering,
     onChangePaginationHandler,
+    setSort,
+    setSortHandler,
+    sort
   }
 }

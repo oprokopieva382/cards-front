@@ -12,7 +12,7 @@ import {
 } from "../../features/auth/components"
 import { RequiresAuth } from "../hok/RequiresAuth"
 import { Auth } from "../hok/Auth"
-import { Cards } from "../../features/auth/components/Cards"
+import { Cards } from "../../features/cards/Cards"
 import { Learn } from "../../features/auth/components/Learn"
 import { Packs } from "../../features/packs/components/Packs"
 

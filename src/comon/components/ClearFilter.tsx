@@ -6,6 +6,7 @@ import FilterAltOffIcon from "@mui/icons-material/FilterAltOff"
 type PropsType = {
   disabled?: boolean
   resetFiltering: () => void
+
 }
 export const ClearFilter: FC<PropsType> = memo(({ resetFiltering, disabled }) => {
   const boxSx = {

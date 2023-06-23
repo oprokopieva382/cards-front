@@ -67,12 +67,12 @@ const slice = createSlice({
       pageCount: "4",
       user_id: "",
     } as ArgParamsType,
+    isLoading: false,
   },
   reducers: {
     setParams: (state, action: PayloadAction<{ params: ArgParamsType }>) => {
       // state.params = { ...state.params, ...action.payload.params }
-      return {...state, params : { ...state.params, ...action.payload.params }}
-      
+      return { ...state, params: { ...state.params, ...action.payload.params } }
     },
   },
   extraReducers: (builder) => {
@@ -85,12 +85,19 @@ const slice = createSlice({
         state.cardPacksTotalCount = packs.cardPacksTotalCount
         state.minCardsCount = packs.minCardsCount
         state.maxCardsCount = packs.maxCardsCount
+        state.isLoading = false
       })
+
       .addCase(addNewPack.fulfilled, (state, action) => {
         state.cardPacks.unshift(action.payload.pack)
       })
       .addCase(deletePack.fulfilled, (state, action) => {
-        state.cardPacks.filter((pack) => pack._id !== action.payload.packId)
+        console.log(action)
+        const index = state.cardPacks.findIndex(
+          (pack) => pack._id === action.payload.packId,
+        )
+        if (index !== -1) state.cardPacks.splice(index, 1)
+        // state.cardPacks.filter((pack) => pack._id !== action.payload.packId)
       })
       .addCase(updatePack.fulfilled, (state, action) => {
         state.cardPacks.find((pack) =>
@@ -99,6 +106,12 @@ const slice = createSlice({
             : pack,
         )
       })
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true
+        },
+      )
   },
 })
 

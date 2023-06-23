@@ -36,12 +36,12 @@ const slice = createSlice({
           state.isAppInitialized = true
         },
       )
-      // .addMatcher(
-      //   (action) => action.type.endsWith("/pending"),
-      //   (state) => {
-      //     state.isLoading = true
-      //   },
-      // )
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true
+        },
+      )
       .addMatcher(
         (action) => action.type.endsWith("/fulfilled"),
         (state) => {

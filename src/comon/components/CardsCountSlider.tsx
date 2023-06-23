@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
 import Typography from "@mui/material/Typography"
-import { FC } from "react"
+import { FC, memo } from "react"
 
 type PropsType = {
   disabled?: boolean
@@ -10,7 +10,7 @@ type PropsType = {
   setMinMax: (value: number[]) => void
 }
 
-export const CardsCountSlider: FC<PropsType> = ({
+export const CardsCountSlider: FC<PropsType> = memo(({
   disabled,
   onChange,
   minMax,
@@ -72,5 +72,5 @@ const onChangeHandler = (event: Event, value: number | number[]) => {
       </Box>
     </Box>
   )
-}
+})
 

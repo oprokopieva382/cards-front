@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from "react"
+import { ChangeEvent, FC, memo } from "react"
 import TextField from "@mui/material/TextField"
 import SearchIcon from "@mui/icons-material/Search"
 import InputAdornment from "@mui/material/InputAdornment"
@@ -8,9 +8,15 @@ type PropsType = {
   fullWidth?: boolean
   value: string
   onChange: (value: string) => void
+  disabled: boolean
 }
 
-export const SearchInput: FC<PropsType> = ({ fullWidth, value, onChange }) => {
+export const SearchInput: FC<PropsType> = memo(({
+  fullWidth,
+  value,
+  onChange,
+  disabled,
+}) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.currentTarget.value)
   }
@@ -18,6 +24,7 @@ export const SearchInput: FC<PropsType> = ({ fullWidth, value, onChange }) => {
   return (
     <Box marginTop={"20px"}>
       <TextField
+        disabled={disabled}
         value={value}
         onChange={onChangeHandler}
         label="Search"
@@ -34,4 +41,4 @@ export const SearchInput: FC<PropsType> = ({ fullWidth, value, onChange }) => {
       />
     </Box>
   )
-}
+})
